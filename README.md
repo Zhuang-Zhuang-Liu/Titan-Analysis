@@ -1,4 +1,4 @@
-# 数据分析 Agent 项目
+# (〃’▽’〃) Let Agent be DataAnalyst
 
 **项目名称**：数据分析智能助手
 
