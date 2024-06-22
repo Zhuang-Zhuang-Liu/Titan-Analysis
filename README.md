@@ -1,26 +1,26 @@
 # (〃’▽’〃) Let Agent be DataAnalyst
 
-**项目名称**：数据分析智能助手
+**Project Name**：Data Analysis Intelligent Assistant
 
-**项目描述**：
-这是一个用于数据分析的智能 Agent 项目，旨在帮助用户更高效、准确地处理和理解数据。
+**Project Description**：
+This is an intelligent Agent project for data analysis, aiming to help users process and understand data more efficiently and accurately.
 
-**安装与运行**：
-1. 环境要求
+**Installation and Running**：
+1. Environmental Requirements
     - Python 版本：3.8 及以上
     - 依赖库：`pandas`、`numpy`、`matplotlib` 等，可通过以下命令安装：
         ```
         pip install -r requirements.txt
         ```
-2. 克隆项目
+2. Clone the Project
         ```
         git clone https://github.com/your_username/your_project.git
         ```
-3. 运行
-    - 进入项目目录
-    - 执行 `python main.py`
+3. Running
+    - Enter the project directory
+    - Execute python main.py
 
-**项目结构**：
+**Project Structure**：
 ```
 your_project/
 ├── data/
@@ -35,8 +35,7 @@ your_project/
 └── main.py
 ```
 
-**使用示例**：
-以下是一个简单的示例，展示如何使用本 Agent 进行数据分析：
+**demo**：
 ```python
 from agent import DataAnalysisAgent
 
@@ -46,24 +45,16 @@ summary = agent.summarize_data(data)
 print(summary)
 ```
 
-**技术栈**：
-- Python 作为主要编程语言
-- 使用了 `pandas` 进行数据处理和分析
-- `matplotlib` 用于数据可视化
+**Contribution Guide**:
+If you wish to contribute to this project, please follow the following steps:
+1. Fork this repository
+2. Create a new branch for your modifications
+3. Submit your changes and create a Pull Request
+4. We will review and merge your contribution
+   
+**Copyright and License**
+This project follows the MIT License Agreement
 
-**贡献指南**：
-如果您希望为这个项目做出贡献，请遵循以下步骤：
-1. Fork 本仓库
-2. 创建一个新的分支进行您的修改
-3. 提交您的更改并创建一个 Pull Request
-4. 我们将对您的贡献进行审查和合并
-
-**版权与许可**：
-本项目遵循 [MIT 许可协议](LICENSE)
-
-**联系方式**：
-如有任何问题或建议，请通过以下方式联系我们：
-- 电子邮件：[your_email@example.com]
-```
-
-您可以根据实际情况对上述内容进行调整和补充。
+**Contact Information**:
+If you have any questions or suggestions, please contact us via the following methods:
+Email: [your_email@example.com]
