@@ -1,14 +1,14 @@
 # (〃’▽’〃) Let Agent be DataAnalyst
 
-**Project Name**：Data Analysis Intelligent Assistant
+**Name**：Data Analysis Intelligent Assistant
 
-**Project Description**：
+**Description**：
 This is an intelligent Agent project for data analysis, aiming to help users process and understand data more efficiently and accurately.
 
 **Installation and Running**：
 1. Environmental Requirements
-    - Python 版本：3.8 及以上
-    - 依赖库：`pandas`、`numpy`、`matplotlib` 等，可通过以下命令安装：
+    - Python Version: 3.8 and above
+    - Dependent Libraries: pandas, numpy, matplotlib, etc. They can be installed by the following command:
         ```
         pip install -r requirements.txt
         ```
