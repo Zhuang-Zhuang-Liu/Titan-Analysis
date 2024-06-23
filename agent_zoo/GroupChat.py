@@ -29,6 +29,15 @@ from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProx
 from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLimiter, MessageTokenLimiter
 
+def folder_clean(folder_path):
+    if os.path.isdir(folder_path):
+        for file in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, file)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        print('***folder clean ready***')
+    else:     
+        print('***folder not exist***')
 
 
 #folder path
