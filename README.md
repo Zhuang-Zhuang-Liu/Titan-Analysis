@@ -10,6 +10,11 @@ This is an intelligent Agent project for data analysis, aiming to help users pro
 ![images](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg)
 ![images](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/flow_chart_v.1.0.png)
 
+
+ ![Image text](picture/whiteboard_exported_image_00.jpg)
+ ![Image text](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg)
+
+ 
 **Installation and Running**：
 1. Environmental Requirements
     - Python Version: 3.8 and above
