@@ -14,6 +14,9 @@ This is an intelligent Agent project for data analysis, aiming to help users pro
  ![Image text](picture/whiteboard_exported_image_00.jpg)
  ![Image text](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg)
 
+<h1 align="left">
+<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg" width="600" alt="agentscope-logo">
+</h1>
  
 **Installation and Running**：
 1. Environmental Requirements
