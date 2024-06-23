@@ -1,3 +1,7 @@
+import os
+from PIL import Image
+import matplotlib.pyplot as plt
+
 # utils
 def show_images_in_directory(directory):
     directory = os.path.join(directory, '') if not directory.endswith('/') else directory  # 确保传入的路径字符串以斜杠结尾
