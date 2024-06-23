@@ -5,6 +5,7 @@
 **Description**：
 This is an intelligent Agent project for data analysis, aiming to help users process and understand data more efficiently and accurately.
 ![images](picture/flow_chart_v.1.0.png)
+![images](picture/whiteboard_exported_image_00.jpg)
 
 **Installation and Running**：
 1. Environmental Requirements
