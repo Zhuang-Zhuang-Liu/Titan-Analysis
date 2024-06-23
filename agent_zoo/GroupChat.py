@@ -52,3 +52,18 @@ print('***speaker_selection_func ready***')
 
 
 
+import autogen
+
+def agent_DA(task_info): 
+    print('\n***Agent_Data_Analysis launching***\n')
+    groupchat = autogen.GroupChat(agents=[user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,
+                                          analyst,ragproxyagent,classify_agent],
+                                  messages=[],enable_clear_history = True,
+                                  max_round=27,speaker_selection_method=custom_speaker_selection_func)
+    manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
+    ragproxyagent.initiate_chat(manager,message=ragproxyagent.message_generator, # 目前的局限性，必须第一个让RetrieveUserProxyAgent发言
+                                problem = task_info + data_info ) # 发言人.initiate_chat（听话人）
+
+    show_images_in_directory(path)# show plt
+
+
