@@ -1,6 +1,6 @@
-from autogen import Agent
-import autogen
 
+import autogen
+from autogen import Agent
 
 def custom_speaker_selection_func(last_speaker: Agent, groupchat: autogen.GroupChat):
     """
