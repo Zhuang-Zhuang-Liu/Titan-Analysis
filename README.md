@@ -4,7 +4,7 @@
 
 **Description**：
 This is an intelligent Agent project for data analysis, aiming to help users process and understand data more efficiently and accurately.
-![Uploading whiteboard_exported_image.png…]()
+![images](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/flow_chart_v.1.0.png)
 
 **Installation and Running**：
 1. Environmental Requirements
