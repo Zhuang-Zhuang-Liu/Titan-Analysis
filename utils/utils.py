@@ -87,10 +87,7 @@ def generate_random_data():
     return data
 
 
-def data_info_put(show_data_info,data_path):
-    generate_random_data()    
-    print('***sample data ready***')
-
+def data_info_put(show_data_info,data_path):  
     # data_describe
     data_describe = """{表名：每日销售订单信息表
                         表主键：cust_id、biz_date
@@ -113,7 +110,7 @@ def data_info_put(show_data_info,data_path):
     """
 
     # data_path
-    #print('请输入需要分析的数据集地址，如需使用默认数据集，请输入“默认”')
+    # print('请输入需要分析的数据集地址，如需使用默认数据集，请输入“默认”')
     input_data_path = data_path
     if len(input_data_path) >= 20:
         data_path = input_data_path
@@ -125,7 +122,9 @@ def data_info_put(show_data_info,data_path):
                         ...}
                }""")
         data_describe = input()
+        print('[数据集已加载]')
     else:
+        print('[默认数据集已加载])
         data_path = '/kaggle/working/Agent_DA_dateset.csv'
         data_describe = data_describe
 
