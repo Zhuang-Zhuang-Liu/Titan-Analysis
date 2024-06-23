@@ -30,7 +30,7 @@ from autogen.agentchat.contrib.capabilities import transform_messages, transform
 from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLimiter, MessageTokenLimiter
 
 
-def agent_create(path,llm_config,loaded_data):
+def agent_create(path,llm_config,loaded_data,guide_path):
     output_dir = Path(path) 
     output_dir.mkdir(exist_ok=True) 
     executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) #每次需要reset,否则pipe error
