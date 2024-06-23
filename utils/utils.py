@@ -88,7 +88,7 @@ def generate_random_data():
 
 
 def data_info_put(show_data_info,data_path):  
-    # data_describe
+    # sample_data_describe
     data_describe = """{表名：每日销售订单信息表
                         表主键：cust_id、biz_date
                         字段描述={
@@ -124,7 +124,7 @@ def data_info_put(show_data_info,data_path):
         data_describe = input()
         print('[数据集已加载]')
     else:
-        print('[默认数据集已加载])
+        print('[默认数据集已加载]')
         data_path = '/kaggle/working/Agent_DA_dateset.csv'
         data_describe = data_describe
 
