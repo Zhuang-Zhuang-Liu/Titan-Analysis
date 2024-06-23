@@ -138,4 +138,4 @@ def data_info_put(show_data_info,data_path):
         print(data_info)
     print('***data_info ready***')
     
-    return data_info11
+    return data_info
