@@ -26,7 +26,7 @@ def folder_clean(folder_path):
     else:     
         print('***folder not exist***')
 
-
+# Knowledge Insert
 def generate_guide():
     guide =  """【数据分析指南】
             对比分析={步骤：- 明确对比的维度和指标。- 选择合适的对比对象。- 进行数据对比
