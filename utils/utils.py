@@ -114,7 +114,7 @@ def data_info_put(show_data_info,data_path):
 
     # data_path
     #print('请输入需要分析的数据集地址，如需使用默认数据集，请输入“默认”')
-    #input_data_path = input()
+    input_data_path = data_path
     if len(input_data_path) >= 20:
         data_path = input_data_path
         print("""请输入数据集的数据描述,格式为
