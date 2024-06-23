@@ -1,21 +1,16 @@
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import random
-
 from PIL import Image
 import matplotlib.pyplot as plt
 import os
-
-
 import tempfile
 from pathlib import Path
-
 from datetime import datetime, timedelta
 import copy
 import pprint
 import re
 from typing import Dict, List, Tuple
-
 import unittest
 import autogen
 from typing import Dict, List
@@ -71,6 +66,8 @@ def agent_create(path,llm_config,loaded_data,guide_path):
     #context_handling.add_to_agent(code_writer_agent)
     #不能简单限制上下文，因为最上文的数据基础信息，不能丢。替代方案是把报错信息，像sensitive一样替换掉
     print('***agent_ready***')
+
+    return user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,analyst,ragproxyagent,classify_agent
 
 
 
