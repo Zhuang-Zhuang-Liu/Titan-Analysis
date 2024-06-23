@@ -29,6 +29,16 @@ from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProx
 from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLimiter, MessageTokenLimiter
 
+#api
+api_zz_deep = 'sk-ca2eb7e5374c47419bc8f6276f90cda1'
+url_deep = 'https://api.deepseek.com/v1'
+model_deep="deepseek-chat" # deepseek-chat *	擅长通用对话任务	32K * deepseek-coder 16K
+llm_config_deep = {"config_list": [{ "model": model_deep,"base_url": url_deep,"api_key": api_zz_deep,"temperature": 0,"cache_seed":None  }] }  
+#如果想要每次都访问llm，不希望直接取缓存结果可配置为None
+llm_config = llm_config_deep
+print('llm_config：',llm_config)
+
+
 def folder_clean(folder_path):
     if os.path.isdir(folder_path):
         for file in os.listdir(folder_path):
