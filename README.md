@@ -56,7 +56,7 @@ guide_path = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.txt
 prompt_path = current_directory+'/Titan-Analysis/agent_zoo/agent_prompts.json'
 with open(prompt_path, "r") as file: agent_prompts = json.load(file)
 
-#folder path
+# folder path
 path="coding"
 folder_clean(path)
 
@@ -65,8 +65,7 @@ task_info,data_info = titan_load()
 
 # analysis
 titan_analysis(path=path,llm_config = llm_config_deep, loaded_data=agent_prompts, 
-               guide_path=guide_path,
-               task_info=task_info,data_info=data_info)
+               guide_path=guide_path,task_info=task_info,data_info=data_info)
 ```
 
 **Contribution Guide**:
