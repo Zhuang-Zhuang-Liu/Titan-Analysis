@@ -1,10 +1,11 @@
-# (〃’▽’〃) Let Agent be DataAnalyst
-<h1 align="left">
-<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg" width="600" alt="Titan-Analysis">
-</h1>
-
-
-**Name**：Titan-Analysis
+> <span style="color:darkblue; font-size:30px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
+>
+> <span style="color:darkblue; font-size:24px; font-weight:bold; font-style:italic;">(〃’▽’〃) Let Agent be DataAnalyst</span>
+> #### Version: V.1.1 
+> #### Git: https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/tree/main
+> #### Power_By: DeepSeek-Chat-V2 & AutoGen
+> #### Author: Zhuang-Zhuang-Liu
+> #### Update_Date: 20240623
 
 **Description**：
 This is an intelligent Agent project for data analysis, aiming to help users process and understand data more efficiently and accurately.
