@@ -132,7 +132,6 @@ def data_info_put(show_data_info,data_path,default_data_path):
     data_info = """\n{数据格式示例}={\n""" + pd.read_csv(data_path).head(3).to_string() \
                     +  """}\n\n{数据地址}="""+ data_path \
                     +  """}\n\n{数据描述}="""+ data_describe 
-    print(data_info)
     if show_data_info is True:
         print(data_info)
     print('***data_info ready***')
