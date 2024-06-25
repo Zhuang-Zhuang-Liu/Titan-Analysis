@@ -48,6 +48,7 @@ your_project/
 ```
 
 **demo**：
+```python
 # llm api
 api_zz_deep,url_deep,model_deep = 'sk-xx','https://api.deepseek.com/v1',"deepseek-chat"
 llm_config_deep = {"config_list": [{ "model": model_deep,"base_url": url_deep,"api_key": api_zz_deep,"temperature": 0,"cache_seed":None  }] }  
