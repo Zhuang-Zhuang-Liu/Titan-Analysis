@@ -24,6 +24,8 @@ from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProx
 from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLimiter, MessageTokenLimiter
 
+from utils.utils import generate_random_data,data_info_put  # IO Data
+
 
 def agent_create(path,llm_config,loaded_data,guide_path):
     output_dir = Path(path) 
@@ -69,6 +71,8 @@ def agent_create(path,llm_config,loaded_data,guide_path):
 
     return user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,analyst,ragproxyagent,classify_agent
 
+
+
 def titan_load():
     print('***请输入数据分析任务，如使用默认任务，请输入“默认”***')
     task_info=input()
@@ -83,6 +87,8 @@ def titan_load():
     data_info = data_info_put(show_data_info=False,data_path=input(),
                               default_data_path=current_directory +'/Titan-Analysis/dataset/Agent_DA_dateset.csv')
     return task_info,data_info
+
+
 
 def agent_da(path,llm_config,loaded_data,guide_path,task_info,data_info):
     
