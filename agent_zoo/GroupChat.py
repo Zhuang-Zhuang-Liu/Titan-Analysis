@@ -167,7 +167,7 @@ def agent_da(path,llm_config,loaded_data,guide_path,task_info,data_info):
     groupchat = autogen.GroupChat(agents=[user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,
                                           analyst,ragproxyagent,classify_agent],
                                   messages=[],max_round=27,speaker_selection_method=custom_speaker_selection_func)
-    manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config_deep)
+    manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
     ragproxyagent.initiate_chat(manager,message=ragproxyagent.message_generator,problem = '{任务}=' + task_info + data_info ) 
 
 
