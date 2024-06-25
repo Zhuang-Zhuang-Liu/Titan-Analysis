@@ -24,7 +24,6 @@ This is an intelligent Agent project for data analysis, aiming to help users pro
         ```
 3. Running
     - Enter the project directory
-    - Execute python main.py
 
 **Project Structure**：
 ```
