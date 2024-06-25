@@ -47,7 +47,7 @@ your_project/
 └── main.py
 ```
 
-**demo**：
+**Demo**：
 ```python
 # llm api
 api_zz_deep,url_deep,model_deep = 'sk-xx','https://api.deepseek.com/v1',"deepseek-chat"
