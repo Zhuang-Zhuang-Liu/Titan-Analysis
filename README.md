@@ -4,14 +4,10 @@
 </h1>
 
 
-**Name**：Data Analysis Intelligent Assistant
+**Name**：Titan-Analysis
 
 **Description**：
 This is an intelligent Agent project for data analysis, aiming to help users process and understand data more efficiently and accurately.
-
-![images](picture/flow_chart_v.1.0.png)
-![images](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg)
-
  
 **Installation and Running**：
 1. Environmental Requirements
@@ -22,7 +18,7 @@ This is an intelligent Agent project for data analysis, aiming to help users pro
         ```
 2. Clone the Project
         ```
-        git clone https://github.com/your_username/your_project.git
+        git clone https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis.git
         ```
 3. Running
     - Enter the project directory
