@@ -37,7 +37,9 @@ your_project/
 │   ├── agent_prompt.json
 │   └──...
 ├── rag_zoo/
-│   ├── agent.py
+│   └──learn_by_case
+│   └──learn_by_Knowledge
+│   ├──data_analysis_guide.txt
 ├── utils/
 │   ├── utils.py
 ├── requirements.txt
