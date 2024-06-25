@@ -92,7 +92,7 @@ def titan_load():
 
 
 
-def agent_da(path,llm_config,loaded_data,guide_path,task_info,data_info):
+def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
     
     def custom_speaker_selection_func(last_speaker: Agent, groupchat: autogen.GroupChat):
         messages = groupchat.messages
