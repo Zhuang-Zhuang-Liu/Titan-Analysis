@@ -31,26 +31,45 @@ This is an intelligent Agent project for data analysis, aiming to help users pro
 **Project Structure**：
 ```
 your_project/
-├── data/
+├── dataset/
 │   ├── sample_data.csv
 │   └──...
-├── src/
-│   ├── agent.py
-│   ├── utils.py
+├── agent_zoo/
+│   ├── GroupChat.py
+│   ├── agent_prompt.json
 │   └──...
+├── rag_zoo/
+│   ├── agent.py
+├── utils/
+│   ├── utils.py
 ├── requirements.txt
 ├── README.md
 └── main.py
 ```
 
 **demo**：
-```python
-from agent import DataAnalysisAgent
+# llm api
+api_zz_deep,url_deep,model_deep = 'sk-xx','https://api.deepseek.com/v1',"deepseek-chat"
+llm_config_deep = {"config_list": [{ "model": model_deep,"base_url": url_deep,"api_key": api_zz_deep,"temperature": 0,"cache_seed":None  }] }  
 
-agent = DataAnalysisAgent()
-data = agent.load_data('data/sample_data.csv')
-summary = agent.summarize_data(data)
-print(summary)
+# guide rag
+guide_path = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.txt'
+
+# agent prompt
+prompt_path = current_directory+'/Titan-Analysis/agent_zoo/agent_prompts.json'
+with open(prompt_path, "r") as file: agent_prompts = json.load(file)
+
+#folder path
+path="coding"
+folder_clean(path)
+
+# load data and task
+task_info,data_info = titan_load()
+
+# analysis
+titan_analysis(path=path,llm_config = llm_config_deep, loaded_data=agent_prompts, 
+               guide_path=guide_path,
+               task_info=task_info,data_info=data_info)
 ```
 
 **Contribution Guide**:
