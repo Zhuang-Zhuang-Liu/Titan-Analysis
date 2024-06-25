@@ -3,7 +3,6 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import random
 from PIL import Image
 import matplotlib.pyplot as plt
-import os
 import tempfile
 from pathlib import Path
 from datetime import datetime, timedelta
@@ -26,6 +25,9 @@ from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLim
 
 from utils.utils import generate_random_data,data_info_put  # IO Data
 
+
+import os
+current_directory = os.getcwd()
 
 def agent_create(path,llm_config,loaded_data,guide_path):
     output_dir = Path(path) 
