@@ -177,7 +177,7 @@ def manage_guide_json(json_data,action,username=None,update_date=None, data_guid
     elif action == "get":
         for record in json_data["records"]:
             if record["username"] == username and record["update_date"] == update_date:
-                
+                current_directory = os.getcwd()
                 file_path_name = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.txt'
                 with open(file_path_name, 'w', encoding='utf-8') as file:
                     file.write(record["data_guide"])
