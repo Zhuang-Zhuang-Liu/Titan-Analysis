@@ -173,9 +173,15 @@ def manage_guide_json(json_data,action,username=None,update_date=None, data_guid
     elif action == "get":
         for record in json_data["records"]:
             if record["username"] == username and record["update_date"] == update_date:
+                
+                file_path_name = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.txt'
+                with open(file_path_name, 'w', encoding='utf-8') as file:
+                    file.write(record["data_guide"])
+                print(f"文本已保存到 {file_path_name}")
+                
                 if show_guide == True:
                     print('*****guide loaded*****\n',record["data_guide"],'\n*********************')
-                return record["data_guide"]
+                return file_path_name
                 
         else:
             print("Record not found.")
