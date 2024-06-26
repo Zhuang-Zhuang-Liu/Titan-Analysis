@@ -144,7 +144,7 @@ from datetime import datetime
 import os
 current_directory = os.getcwd()
 
-def manage_guide_json(json_data,action,username=None,update_date=None, data_guide=None,show_guide=False):
+def manage_guide_json(json_data_path,action,username=None,update_date=None, data_guide=None,show_guide=False):
     """
     Manage user data guide records within a JSON structure.
 
@@ -159,6 +159,9 @@ def manage_guide_json(json_data,action,username=None,update_date=None, data_guid
     Returns:
     - If the action is "get", returns the corresponding data guide text. Otherwise, returns None.
     """
+
+    with open(json_data_path, 'r') as file:
+    json_data = json.load(file)
     
     if action == "add":
         new_record = { "username": username,"data_guide": data_guide,"update_date": update_date}
