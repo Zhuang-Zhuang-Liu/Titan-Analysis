@@ -137,3 +137,51 @@ def data_info_put(show_data_info,data_path,default_data_path):
     print('***data_info ready***')
     
     return data_info
+
+
+
+def manage_guide_json(json_data,action,username=None,update_date=None, data_guide=None,show_guide=False):
+    """
+    Manage user data guide records within a JSON structure.
+
+    Parameters:
+    - json_data: dict, a dictionary containing a "records" key that stores a list of data guide records.
+    - action: str, the type of operation to perform, which can be "add" (to add a record), "remove" (to remove a record),
+              "get" (to retrieve a record), or "show" (to display all records).
+    - username: str, the username of the record to add, remove, or get.
+    - update_date: str, the update date of the record to add, remove, or get.
+    - data_guide: str, the content of the data guide, required only when adding a new record.
+
+    Returns:
+    - If the action is "get", returns the corresponding data guide text. Otherwise, returns None.
+    """
+    
+    if action == "add":
+        new_record = { "username": username,"data_guide": data_guide,"update_date": update_date}
+        json_data["records"].append(new_record)
+        print("New Record added：",username,update_date)
+        
+    elif action == "remove":
+        for i, record in enumerate(json_data["records"]):
+            if record["username"] == username and record["update_date"] == update_date:
+                del json_data["records"][i]
+                print("Record removed.")
+                break
+        else:
+            print("Record not found.")
+            
+    elif action == "get":
+        for record in json_data["records"]:
+            if record["username"] == username and record["update_date"] == update_date:
+                if show_guide == True:
+                    print('*****guide loaded*****\n',record["data_guide"],'\n*********************')
+                return record["data_guide"]
+                
+        else:
+            print("Record not found.")
+            
+    elif action == "show":    
+        for record in json_data["records"]:
+            print('username：',record["username"],"update_date：",record["update_date"],'\n')
+    else:
+        print("Action not found.")
