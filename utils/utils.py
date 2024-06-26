@@ -141,6 +141,8 @@ def data_info_put(show_data_info,data_path,default_data_path):
 
 import json
 from datetime import datetime
+import os
+current_directory = os.getcwd()
 
 def manage_guide_json(json_data,action,username=None,update_date=None, data_guide=None,show_guide=False):
     """
