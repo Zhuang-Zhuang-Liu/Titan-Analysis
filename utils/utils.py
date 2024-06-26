@@ -121,29 +121,33 @@ from datetime import datetime
 import os
 current_directory = os.getcwd()
 
-def manage_guide_json(json_data_path,action,username=None,update_date=None, data_guide=None,show_guide=False):
+import json
+import os
+
+def manage_guide_json(json_data_path, action, username=None, update_date=None, data_guide=None, show_guide=False):
     """
-    Manage user data guide records within a JSON structure.
+    Manage user data guide records within a JSON structure by adding, removing, getting, or showing records.
 
     Parameters:
-    - json_data: dict, a dictionary containing a "records" key that stores a list of data guide records.
-    - action: str, the type of operation to perform, which can be "add" (to add a record), "remove" (to remove a record),
-              "get" (to retrieve a record), or "show" (to display all records).
+    - json_data_path: str, the file path to the JSON data.
+    - action: str, the operation to perform ("add", "remove", "get", "show", "insert").
     - username: str, the username of the record to add, remove, or get.
     - update_date: str, the update date of the record to add, remove, or get.
-    - data_guide: str, the content of the data guide, required only when adding a new record.
+    - data_guide: str, the content of the data guide to add or insert.
+    - show_guide: bool, if True and action is "get", it will print the guide content.
 
     Returns:
-    - If the action is "get", returns the corresponding data guide text. Otherwise, returns None.
+    - The file path of the saved data guide text if action is "get", otherwise None.
     """
-
-    with open(json_data_path, 'r') as file:
-    json_data = json.load(file)
     
+    # Read the JSON data from the file
+    with open(json_data_path, 'r', encoding='utf-8') as file:
+        json_data = json.load(file)
+
     if action == "add":
-        new_record = { "username": username,"data_guide": data_guide,"update_date": update_date}
+        new_record = {"username": username, "data_guide": data_guide, "update_date": update_date}
         json_data["records"].append(new_record)
-        print("New Record added：",username,update_date)
+        print("New record added:", username, update_date)
         
     elif action == "remove":
         for i, record in enumerate(json_data["records"]):
@@ -157,21 +161,34 @@ def manage_guide_json(json_data_path,action,username=None,update_date=None, data
     elif action == "get":
         for record in json_data["records"]:
             if record["username"] == username and record["update_date"] == update_date:
-                current_directory = os.getcwd()
-                file_path_name = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.txt'
+                file_path_name = os.path.join(os.getcwd(), 'Titan-Analysis/rag_zoo/data_analysis_guide.txt')
                 with open(file_path_name, 'w', encoding='utf-8') as file:
                     file.write(record["data_guide"])
-                print(f"文本已保存到 {file_path_name}")
+                print(f"Text has been saved to {file_path_name}")
                 
-                if show_guide == True:
-                    print('*****guide loaded*****\n',record["data_guide"],'\n*********************')
+                if show_guide:
+                    print('***** Guide loaded *****\n', record["data_guide"], '\n*********************')
                 return file_path_name
-                
         else:
             print("Record not found.")
             
+    elif action == "insert":  # New action to insert content into data_guide
+        for i, record in enumerate(json_data["records"]):
+            if record["username"] == username and record["update_date"] == update_date:
+                record["data_guide"] += data_guide  # Insert new content to existing data_guide
+                print("Content inserted into data guide.")
+                break
+        else:
+            print("Record not found.")
+        
     elif action == "show":    
         for record in json_data["records"]:
-            print('username：',record["username"],"update_date：",record["update_date"],'\n')
+            print('Username:', record["username"], 'Update Date:', record["update_date"], '\n')
     else:
-        print("Action not found.")
+        print("Action not recognized.")
+    
+    # Write the updated JSON data back to the file
+    with open(json_data_path, 'w', encoding='utf-8') as file:
+        json.dump(json_data, file, ensure_ascii=False, indent=4)
+
+# Note: The 'insert' action assumes that 'data_guide' is the text you want to append to the existing guide.
