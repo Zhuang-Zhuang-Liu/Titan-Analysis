@@ -87,6 +87,7 @@ def generate_random_data():
     return data
 
 
+
 def data_info_put(show_data_info,data_path,default_data_path):  
     # sample_data_describe
     data_describe = """{表名：每日销售订单信息表
@@ -138,7 +139,8 @@ def data_info_put(show_data_info,data_path,default_data_path):
     
     return data_info
 
-
+import json
+from datetime import datetime
 
 def manage_guide_json(json_data,action,username=None,update_date=None, data_guide=None,show_guide=False):
     """
