@@ -161,7 +161,7 @@ def manage_guide_json(json_data_path, action, username=None, update_date=None, d
     elif action == "get":
         for record in json_data["records"]:
             if record["username"] == username and record["update_date"] == update_date:
-                file_path_name = os.path.join(os.getcwd(), 'Titan-Analysis/rag_zoo/data_analysis_guide.txt')
+                file_path_name = os.path.join(os.getcwd(), 'Titan-Analysis/virtual_desktop/data_analysis_guide.txt')
                 with open(file_path_name, 'w', encoding='utf-8') as file:
                     file.write(record["data_guide"])
                 print(f"Text has been saved to {file_path_name}")
@@ -177,6 +177,11 @@ def manage_guide_json(json_data_path, action, username=None, update_date=None, d
             if record["username"] == username and record["update_date"] == update_date:
                 record["data_guide"] += data_guide  # Insert new content to existing data_guide
                 print("Content inserted into data guide.")
+                
+                file_path_name = os.path.join(os.getcwd(), 'Titan-Analysis/virtual_desktop/data_analysis_guide.txt')
+                with open(file_path_name, 'w', encoding='utf-8') as file:
+                    json.dump(json_data, file, ensure_ascii=False, indent=4)
+                
                 break
         else:
             print("Record not found.")
@@ -186,9 +191,3 @@ def manage_guide_json(json_data_path, action, username=None, update_date=None, d
             print('Username:', record["username"], 'Update Date:', record["update_date"], '\n')
     else:
         print("Action not recognized.")
-    
-    # Write the updated JSON data back to the file
-    with open(json_data_path, 'w', encoding='utf-8') as file:
-        json.dump(json_data, file, ensure_ascii=False, indent=4)
-
-# Note: The 'insert' action assumes that 'data_guide' is the text you want to append to the existing guide.
