@@ -121,7 +121,7 @@ def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
                 return analyst
 
         if last_speaker is code_writer_agent:
-            if "Code has been executed successfully" not in messages[-1]["content"] :
+            if "Code_Execute_Successful" not in messages[-1]["content"] :
                 return code_executor_agent
             else:
                 return project_manager
