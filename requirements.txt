@@ -1,1 +1,5 @@
-
+openai
+pyautogen==0.2.32
+'pyautogen[jupyter-executor]'
+"pyautogen[retrievechat]"
+ipywidgets
