@@ -65,7 +65,7 @@ def generate_random_data():
 
 
 
-def data_info_put(dataset_card_path = "/kaggle/working/Titan-Analysis/dataset/demo_dataset_card.json",show_data_info=False):    
+def data_info_put(dataset_card_path,show_data_info=False):    
     # read demo dataset card
     with open(dataset_card_path, 'r') as file:
         dataset_card = json.load(file)
@@ -98,6 +98,7 @@ def data_info_put(dataset_card_path = "/kaggle/working/Titan-Analysis/dataset/de
         print(data_info)
     
     return data_info
+
 
 import json
 from datetime import datetime
