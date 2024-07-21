@@ -29,7 +29,7 @@ from utils.utils import generate_random_data,data_info_put  # IO Data
 import os
 current_directory = os.getcwd()
 
-def agent_create(path,llm_config,loaded_data,guide_path):
+def agent_create(path,llm_config,agent_prompts,guide_path):
     output_dir = Path(path) 
     output_dir.mkdir(exist_ok=True) 
     executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) #每次需要reset,否则pipe error
@@ -37,31 +37,32 @@ def agent_create(path,llm_config,loaded_data,guide_path):
                                                  code_execution_config={"executor": executor,"last_n_messages": 3,'max_retries':2}) 
 
     #knowledge rag
-    classify_agent = AssistantAgent(name="classify_agent",llm_config=llm_config,system_message=loaded_data['promopt_rag_classify_agent']) 
+    classify_agent = AssistantAgent(name="classify_agent",llm_config=llm_config,system_message=agent_prompts['promopt_rag_classify_agent']) 
 
 
     ragproxyagent = RetrieveUserProxyAgent(name="ragproxyagent",retrieve_config={"task": "qa","vector_db": "chroma",
                                                                                  "update_context": True, #选中则可以更新rag database
                                                                                  "embedding_model": "all-MiniLM-L6-v2","get_or_create": True,  
                                                                                  "docs_path": guide_path  },  human_input_mode="NEVER")
+
     ragproxyagent.reset()
 
     user_proxy = autogen.UserProxyAgent(name="Admin",code_execution_config=False,
                                         system_message="""A human admin.Plan execution needs to be approved by this admin.""")
 
-    planner = autogen.AssistantAgent(name="planner",llm_config=llm_config,system_message=loaded_data['promopt_planner'])
+    planner = autogen.AssistantAgent(name="planner",llm_config=llm_config,system_message=agent_prompts['promopt_planner'])
 
     project_manager = autogen.AssistantAgent(name="project_manager",llm_config=llm_config,code_execution_config=False,
-                                             system_message = loaded_data['promopt_project_manager'] )  
+                                             system_message = agent_prompts['promopt_project_manager'] )  
 
     code_writer_agent = autogen.AssistantAgent(name="code_writer_agent",llm_config=llm_config,code_execution_config=False,
-                                               system_message=loaded_data['promopt_code_writer_agent']) 
+                                               system_message=agent_prompts['promopt_code_writer_agent']) 
 
     analyst = autogen.AssistantAgent(name="analyst",llm_config=llm_config,code_execution_config=False,
-                                     system_message=loaded_data['promopt_analyst']) 
+                                     system_message=agent_prompts['promopt_analyst']) 
 
     checker = autogen.AssistantAgent(name="checker",llm_config=llm_config,code_execution_config=False,
-                                     system_message=loaded_data['promopt_analyst'])
+                                     system_message=agent_prompts['promopt_analyst'])
 
     # history limit
     context_handling = transform_messages.TransformMessages(
@@ -88,7 +89,7 @@ def task_load():
 
 
 
-def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
+def titan_analysis(path,llm_config,agent_prompts,guide_path,task_info,data_info,max_round_num =27):
     
     def custom_speaker_selection_func(last_speaker: Agent, groupchat: autogen.GroupChat):
         messages = groupchat.messages
@@ -133,19 +134,18 @@ def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
     
     # agent create
     user_proxy,code_writer_agent,code_executor_agent,checker,project_manager,planner,analyst,ragproxyagent,\
-    classify_agent = agent_create(path=path,llm_config = llm_config, loaded_data=loaded_data, guide_path=guide_path)
+    classify_agent = agent_create(path=path,llm_config = llm_config, agent_prompts=agent_prompts, guide_path=guide_path)
 
-    # for broken pip
+    # for error : broken pip
     from pathlib import Path
-    output_dir = Path(path) 
-    executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) #每次需要reset,否则pipe error
-    code_executor_agent = autogen.UserProxyAgent(name="code_executor_agent",human_input_mode="NEVER",
-                                                 code_execution_config={"executor": executor,"last_n_messages": 3,'max_retries':2})
+    output_dir = Path(path) # 否则pipe error
+    executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) # 否则pipe error
+    code_executor_agent = autogen.UserProxyAgent(name="code_executor_agent",human_input_mode="NEVER",code_execution_config={"executor": executor,"last_n_messages": 3,'max_retries':2}) # 否则pipe error
     
     # agent analysis
     groupchat = autogen.GroupChat(agents=[user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,
                                           analyst,ragproxyagent,classify_agent],
-                                  messages=[],max_round=27,speaker_selection_method=custom_speaker_selection_func)
+                                  messages=[],max_round=max_round_num,speaker_selection_method=custom_speaker_selection_func)
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
     ragproxyagent.initiate_chat(manager,message=ragproxyagent.message_generator,problem = '{任务}=' + task_info + data_info ) 
 
