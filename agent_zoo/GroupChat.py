@@ -95,7 +95,7 @@ def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
         #early stop
         error_count = sum(1 for msg in messages if "(execution failed)" in msg["content"] or "FileNotFoundError" in msg["content"] )
         if error_count >= 2:
-            print('当前已累计报错2次，请重新描述问题试试吧')
+            print('代码已累计报错2次，重新描述问题试试吧')
             return None
 
         if last_speaker is ragproxyagent:
@@ -136,6 +136,7 @@ def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
     classify_agent = agent_create(path=path,llm_config = llm_config, loaded_data=loaded_data, guide_path=guide_path)
 
     # for broken pip
+    from pathlib import Path
     output_dir = Path(path) 
     executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) #每次需要reset,否则pipe error
     code_executor_agent = autogen.UserProxyAgent(name="code_executor_agent",human_input_mode="NEVER",
