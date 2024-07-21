@@ -149,6 +149,10 @@ def titan_analysis(path,llm_config,agent_prompts,guide_path,task_info,data_info,
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
     ragproxyagent.initiate_chat(manager,message=ragproxyagent.message_generator,problem = '{任务}=' + task_info + data_info ) 
 
+    print("""✨ Titan-Analysis  ✨
+    ✨ (〃’▽’〃) Let Agent be DataAnalyst ✨
+    --------------------------------------------------------------------------------""")
+
 
     
 
