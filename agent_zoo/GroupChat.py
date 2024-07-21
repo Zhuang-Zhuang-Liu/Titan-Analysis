@@ -80,7 +80,7 @@ def task_load():
     task_info=input()
     task_info_default="""{销售收入大于1万、销售成本小于700的用户，主要分布在哪些年龄段和哪些等级城市，先单独分析、然后交叉分析这2个维度
                            备注： 年龄段的划分：18~30岁=青年，30~60=中年，60岁以上=老年}"""
-    if len(task_info) <= 20:
+    if len(task_info) <= 5:
         task_info = task_info_default
     print('[任务已接收]:' + task_info)
 
