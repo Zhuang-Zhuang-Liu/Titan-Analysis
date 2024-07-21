@@ -75,7 +75,7 @@ def agent_create(path,llm_config,loaded_data,guide_path):
 
 
 
-def titan_load():
+def task_load():
     print('***请输入数据分析任务，如使用默认任务，请输入“默认”***')
     task_info=input()
     task_info_default="""{销售收入大于1万、销售成本小于700的用户，主要分布在哪些年龄段和哪些等级城市，先单独分析、然后交叉分析这2个维度
@@ -84,11 +84,7 @@ def titan_load():
         task_info = task_info_default
     print('[任务已接收]:' + task_info)
 
-    # data input
-    print('***请输入需要分析的数据集地址，如使用默认数据集，请输入“默认”***')
-    data_info = data_info_put(show_data_info=False,data_path=input(),
-                              default_data_path=current_directory +'/Titan-Analysis/dataset/Agent_DA_dateset.csv')
-    return task_info,data_info
+    return task_info
 
 
 
