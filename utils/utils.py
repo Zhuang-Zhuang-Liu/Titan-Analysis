@@ -65,31 +65,14 @@ def generate_random_data():
 
 
 
-def data_info_put(show_data_info,data_path,default_data_path):  
-    # sample_data_describe
-    data_describe = """{表名：每日销售订单信息表
-                        表主键：cust_id、biz_date
-                        字段描述={
-                            cust_id：数据类型为整数，数据格式为 6 位整数，业务含义是用户ID
-                            cust_sex：数据类型为整数（0 或 1），数据格式为单个整数，业务含义表示客户性别，0代表女，1代表男
-                            cust_age：数据类型为整数，数据格式为 18 到 80 之间的整数，业务含义是客户年龄
-                            cust_revenue_type：数据类型为字符串，数据格式为 'A'、'B'、'C' 之一，代表客户类型，A代表高收入，B代表中收入，C代表低收入
-                            cust_open_date：数据类型为字符串，数据格式为类似 '2023-MM-DD' 的日期格式，指开户日期
-                            cust_city_type：数据类型为整数，数据格式为 1 到 5 之间的整数，业务含义是城市等级，1~5代表一线城市~五线城市
-                            item_item_platform：数据类型为字符串，数据格式为 'platform1'、'platform2'、'platform3'之一，代表商品所属平台
-                            item_type：数据类型为字符串，数据格式为 'type1'、'type2'、'type3'之一，代表商品类型
-                            item_is_discounted：数据类型为布尔型，数据格式为 True 或 False，代表商品是否打折
-                            item_price：数据类型为整数，数据格式为 50 到 500 之间的整数，代表商品价格
-                            item_rating：数据类型为整数，数据格式为 1 到 5 之间的整数，代表商品评分
-                            order_amt：数据类型为整数，数据格式为一个整数值，业务含义是订单金额
-                            order_cost：数据类型为整数，数据格式为整数值，业务含义是订单成本
-                            biz_date：数据类型为字符串，数据格式为 '2024-MM-DD'，表示业务日期}
-                    }
-    """
+def data_info_put(dataset_card_path = "/kaggle/working/Titan-Analysis/dataset/demo_dataset_card.json",show_data_info=False):    
+    # read demo dataset card
+    with open(dataset_card_path, 'r') as file:
+        dataset_card = json.load(file)
 
-    # data_path
-    # print('请输入需要分析的数据集地址，如需使用默认数据集，请输入“默认”')
-    input_data_path = data_path
+    # input
+    print('请输入需要分析的数据集地址，如需使用默认数据集，请输入“默认”')
+    input_data_path = input()
     if len(input_data_path) >= 20:
         data_path = input_data_path
         print("""请输入数据集的数据描述,格式为
@@ -100,19 +83,19 @@ def data_info_put(show_data_info,data_path,default_data_path):
                         ...}
                }""")
         data_describe = input()
-        print('[数据集已加载]')
     else:
-        print('[默认数据集已加载]')
-        data_path = default_data_path
-        data_describe = data_describe
+        data_describe = dataset_card['data_describe']
+        data_path = dataset_card['data_path']
 
     # data_info
     data_info = """\n{数据格式示例}={\n""" + pd.read_csv(data_path).head(3).to_string() \
                     +  """}\n\n{数据地址}="""+ data_path \
                     +  """}\n\n{数据描述}="""+ data_describe 
+    
+    if len(pd.read_csv(data_path).head(3).to_string()) < 20:
+        print("Warning: Current data reading may be incorrect")
     if show_data_info is True:
         print(data_info)
-    print('***data_info ready***')
     
     return data_info
 
@@ -124,46 +107,19 @@ current_directory = os.getcwd()
 import json
 import os
 
-def manage_guide_json(json_data_path, action, username=None, update_date=None, data_guide=None, show_guide=False):
+def manage_guide_json(guide_zoo_path, action, guide_name='demo_da_guide', show_guide=False):
     """
     Manage user data guide records within a JSON structure by adding, removing, getting, or showing records.
-
-    Parameters:
-    - json_data_path: str, the file path to the JSON data.
-    - action: str, the operation to perform ("add", "remove", "get", "show", "insert").
-    - username: str, the username of the record to add, remove, or get.
-    - update_date: str, the update date of the record to add, remove, or get.
-    - data_guide: str, the content of the data guide to add or insert.
-    - show_guide: bool, if True and action is "get", it will print the guide content.
-
-    Returns:
-    - The file path of the saved data guide text if action is "get", otherwise None.
     """
-    
-    # Read the JSON data from the file
-    with open(json_data_path, 'r', encoding='utf-8') as file:
+    # load
+    with open(guide_zoo_path, 'r', encoding='utf-8') as file:
         json_data = json.load(file)
-
-    if action == "add":
-        new_record = {"username": username, "data_guide": data_guide, "update_date": update_date}
-        json_data["records"].append(new_record)
-        print("New record added:", username, update_date)
-        
-    elif action == "remove":
-        for i, record in enumerate(json_data["records"]):
-            if record["username"] == username and record["update_date"] == update_date:
-                del json_data["records"][i]
-                print("Record removed.")
-                break
-        else:
-            print("Record not found.")
-            
-    elif action == "get":
-        for record in json_data["records"]:
-            if record["username"] == username and record["update_date"] == update_date:
-                file_path_name = os.path.join(os.getcwd(), 'Titan-Analysis/virtual_desktop/data_analysis_guide.txt')
+    # get
+    if action == "get":
+        if  guide_name in json_data:
+                file_path_name = os.path.join(os.getcwd(),'Titan-Analysis/virtual_desktop/da_guide.txt')
                 with open(file_path_name, 'w', encoding='utf-8') as file:
-                    file.write(record["data_guide"])
+                    file.write(json_data[guide_name])
                 print(f"Text has been saved to {file_path_name}")
                 
                 if show_guide:
@@ -171,23 +127,3 @@ def manage_guide_json(json_data_path, action, username=None, update_date=None, d
                 return file_path_name
         else:
             print("Record not found.")
-            
-    elif action == "insert":  # New action to insert content into data_guide
-        for i, record in enumerate(json_data["records"]):
-            if record["username"] == username and record["update_date"] == update_date:
-                record["data_guide"] += data_guide  # Insert new content to existing data_guide
-                print("Content inserted into data guide.")
-                
-                file_path_name = os.path.join(os.getcwd(), 'Titan-Analysis/virtual_desktop/data_analysis_guide.txt')
-                with open(file_path_name, 'w', encoding='utf-8') as file:
-                    json.dump(json_data, file, ensure_ascii=False, indent=4)
-                
-                break
-        else:
-            print("Record not found.")
-        
-    elif action == "show":    
-        for record in json_data["records"]:
-            print('Username:', record["username"], 'Update Date:', record["update_date"], '\n')
-    else:
-        print("Action not recognized.")
