@@ -10,6 +10,15 @@
 
 **Demo**：
 ```python
+# import Titan-Analysis
+import os
+current_directory = os.getcwd()
+!git clone https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis.git
+sys.path.append( current_directory +'/Titan-Analysis') 
+from utils.utils import show_images_in_directory,folder_clean,manage_guide_json,data_info_put
+from agent_zoo.GroupChat import agent_create,titan_analysis,task_load
+
+
 # llm api
 api_zz_deep,url_deep,model_deep = 'sk-xx','https://api.deepseek.com/v1',"deepseek-chat"
 llm_config_deep = {"config_list": [{ "model": model_deep,"base_url": url_deep,"api_key": api_zz_deep,"temperature": 1.0 ,"cache_seed":1  }] }  
@@ -38,8 +47,7 @@ titan_analysis(path="coding",
                guide_path = current_directory + '/Titan-Analysis/virtual_desktop/da_guide.txt', # str
                task_info = task_info, 
                data_info = data_info,
-               max_round_num = 27
-              )
+               max_round_num = 27 )
 ```
 
    
