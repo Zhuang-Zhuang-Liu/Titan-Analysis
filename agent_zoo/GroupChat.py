@@ -136,6 +136,7 @@ def titan_analysis(path,llm_config,loaded_data,guide_path,task_info,data_info):
     classify_agent = agent_create(path=path,llm_config = llm_config, loaded_data=loaded_data, guide_path=guide_path)
 
     # for broken pip
+    output_dir = Path(path) 
     executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) #每次需要reset,否则pipe error
     code_executor_agent = autogen.UserProxyAgent(name="code_executor_agent",human_input_mode="NEVER",
                                                  code_execution_config={"executor": executor,"last_n_messages": 3,'max_retries':2})
