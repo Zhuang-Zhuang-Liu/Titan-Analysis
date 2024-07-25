@@ -66,7 +66,7 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
                                      system_message=agent_prompts['promopt_analyst']) 
 
     checker = autogen.AssistantAgent(name="checker",llm_config=llm_config,code_execution_config=False,
-                                     system_message=agent_prompts['checker'])
+                                     system_message=agent_prompts['promopt_checker'])
     # history limit
     context_handling = transform_messages.TransformMessages(
         transforms=[transforms.MessageHistoryLimiter(max_messages=4),
