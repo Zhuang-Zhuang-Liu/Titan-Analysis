@@ -1,6 +1,10 @@
 import os
 from PIL import Image
 import matplotlib.pyplot as plt
+import json
+from datetime import datetime
+import os
+current_directory = os.getcwd()
 
 # utils
 def show_images_in_directory(directory):
@@ -100,31 +104,3 @@ def data_info_put(dataset_card_path,show_data_info=False):
     return data_info
 
 
-import json
-from datetime import datetime
-import os
-current_directory = os.getcwd()
-
-import json
-import os
-
-def manage_guide_json(guide_zoo_path, action, guide_name='demo_da_guide', show_guide=False):
-    """
-    Manage user data guide records within a JSON structure by adding, removing, getting, or showing records.
-    """
-    # load
-    with open(guide_zoo_path, 'r', encoding='utf-8') as file:
-        json_data = json.load(file)
-    # get
-    if action == "get":
-        if  guide_name in json_data:
-                file_path_name = os.path.join(os.getcwd(),'Titan-Analysis/virtual_desktop/da_guide.txt')
-                with open(file_path_name, 'w', encoding='utf-8') as file:
-                    file.write(json_data[guide_name])
-                print(f"Text has been saved to {file_path_name}")
-                
-                if show_guide:
-                    print('***** Guide loaded *****\n', record["data_guide"], '\n*********************')
-                return file_path_name
-        else:
-            print("Record not found.")
