@@ -78,6 +78,8 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
 
 
 def load_data_and_prompts(dataset_card_path,agent_prompts_path,guide_path):
+    import json
+    import pandas as pd
     # load prompts
     with open(agent_prompts_path, 'r') as file:  prompts = json.load(file)
 
