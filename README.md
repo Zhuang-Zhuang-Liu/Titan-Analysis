@@ -1,7 +1,7 @@
 > # <span style="color:darkblue; font-size:30px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
 > 
 > ## <span style="color:darkblue; font-size:24px; font-weight:bold; font-style:italic;">(〃’▽’〃) Let Agent be DataAnalyst</span>
-> #### Version: V.1.1 
+> #### Version: V.1.2
 > #### Git: https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/tree/main
 > #### Power_By: DeepSeek-Chat-V2 & AutoGen
 > #### Author: Zhuang-Zhuang-Liu
@@ -10,44 +10,26 @@
 
 **Demo**：
 ```python
-# import Titan-Analysis
-import os
+
+# git clone
+import shutil,sys,os
 current_directory = os.getcwd()
 !git clone https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis.git
 sys.path.append( current_directory +'/Titan-Analysis') 
-from utils.utils import show_images_in_directory,folder_clean,manage_guide_json,data_info_put
-from agent_zoo.GroupChat import agent_create,titan_analysis,task_load
-
+from agent_zoo.GroupChat import Titan,agent_create,show_chat_history,load_data_and_prompts
 
 # llm api
-api_zz_deep,url_deep,model_deep = 'sk-xx','https://api.deepseek.com/v1',"deepseek-chat"
-llm_config_deep = {"config_list": [{ "model": model_deep,"base_url": url_deep,"api_key": api_zz_deep,"temperature": 1.0 ,"cache_seed":1  }] }  
+llm_config_deep = {"config_list": [{ "model": "deepseek-chat","base_url": 'https://api.deepseek.com/v1',"api_key": "sk-xx","temperature": 1.0 }] }
 
-
-# load guide to desktop for rag
-manage_guide_json(guide_zoo_path=current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.json',
-                  action='get', guide_name='demo_da_guide', show_guide=False)
-
-
-# load agent prompt
-prompt_path = current_directory+'/Titan-Analysis/agent_zoo/agent_prompts.json'
-with open(prompt_path, "r") as file: agent_prompts = json.load(file)
-
-
-# load data and task
-dataset_card_path = current_directory +'/Titan-Analysis/dataset/demo_dataset_card.json'
-data_info = data_info_put(dataset_card_path = dataset_card_path,show_data_info=False)
-task_info = task_load()
-
+# load_data_and_prompts
+prompts,data_info,guide= load_data_and_prompts(dataset_card_path = current_directory +'/Titan-Analysis/dataset/demo_dataset_card.json',
+                                         agent_prompts_path = '/kaggle/working/Titan-Analysis/agent_zoo/agent_prompts.json',
+                                         guide_path = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.json')
 
 # analysis
-titan_analysis(path="coding",
-               llm_config = llm_config_deep,
-               agent_prompts = agent_prompts,
-               guide_path = current_directory + '/Titan-Analysis/virtual_desktop/da_guide.txt', # str
-               task_info = task_info, 
-               data_info = data_info,
-               max_round_num = 27 )
+ana = Titan(guide = guide,datacard=data_info,prompts=prompts )
+ana.task_input()
+result = ana.analysis(path='coding',llm_config=llm_config_deep,max_round_num =27)
 ```
 
    
