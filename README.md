@@ -1,7 +1,7 @@
 
 ## 🤖 Intro
  
-> #### <span style="color:darkblue; font-size:30px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
+> ## <span style="color:darkblue; font-size:30px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
 > #### <span style="color:darkblue; font-size:20px; font-weight:bold; font-style:italic;">(〃’▽’〃) Let Agent be DataAnalyst</span>
 > #### <a href="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis">🔗 Version 1.2</a>
 > #### 📚 https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis
