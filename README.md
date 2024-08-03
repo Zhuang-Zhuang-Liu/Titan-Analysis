@@ -1,12 +1,12 @@
 
 ## 🤖 Intro
  
-> #### <span style="color:darkblue; font-size:22px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
+> #### <span style="color:darkblue; font-size:30px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
 > #### <span style="color:darkblue; font-size:20px; font-weight:bold; font-style:italic;">(〃’▽’〃) Let Agent be DataAnalyst</span>
-> #### Version: V.1.2
-> #### Git: https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis
-> #### Power_By: DeepSeek-Chat-V2 & AutoGen
-> #### Author: Zhuang-Zhuang-Liu
+> #### <a href="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis">🔗 Version 1.2</a>
+> #### 📚 https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis
+> #### 🤝 DeepSeek-Chat-V2 & AutoGen
+> #### 📢 Zhuang-Zhuang-Liu
  
    
 ## 🚀 Getting Started
