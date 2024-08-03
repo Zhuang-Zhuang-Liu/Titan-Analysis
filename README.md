@@ -31,6 +31,12 @@ result = ana.analysis(path,llm_config=llm_config_deep,max_round_num)
 ## ✨ Demo
 > #### Pending supplementation...
 > #### [Test Video Upload](https://github.com/reworkd/AgentGPT/assets/50181239/5348e44a-29a5-4280-a06b-fe1429a8d99e)
+># AgentScope
+<h1 align="left">
+<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg" width="600" alt="agentscope-logo">
+</h1>
+![Image text](https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg) 
+
    
 ## 🔐 Copyright and License
 > #### This project follows the MIT License Agreement
