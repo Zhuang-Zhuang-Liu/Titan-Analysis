@@ -30,6 +30,9 @@ result = ana.analysis(path,llm_config=llm_config_deep,max_round_num)
   
 ## ✨ Work Flow
 <h1 align="left">
+<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/WorkFlow_CN_2408.png" width="800" alt="Work Flow">
+</h1>
+<h1 align="left">
 <img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/whiteboard_exported_image_00.jpg" width="800" alt="Work Flow">
 </h1>
    
