@@ -155,8 +155,9 @@ def search_indicator_guide(indicator_guide, keyword_list):
 class Titan():
     titan_type = 'date_analysis'
 
-    def __init__(self, guide, datacard, prompts,llm_config):
-        self.guide = guide
+    def __init__(self, da_guide_dict,indicator_guide, datacard, prompts,llm_config):
+        self.da_guide_dict = da_guide_dict
+        self.indicator_guide = indicator_guide
         self.datacard = datacard
         self.prompts=prompts
         self.llm_config=llm_config
@@ -164,6 +165,7 @@ class Titan():
     def task_input(self):
         agent_prompts = self.prompts
         llm_config = self.llm_config
+        indicator_guide = self.indicator_guide
         
         print('***请输入需要agent完成的任务，如需使用demo任务，请输入“默认”')
         demo_task = """{任务} ={把业务日期在24年5月之后和24年3月之前的用户分别定义为a组和b组，统计2个分组的男性用户在不同等级城市的人均销售收入，
@@ -174,12 +176,10 @@ class Titan():
 
         classify_agent = AssistantAgent(name="classify_agent",llm_config = llm_config,system_message=agent_prompts['promopt_rag_classify_agent'])
         user_proxy = autogen.UserProxyAgent(name="Admin",code_execution_config=False,system_message="""A human admin""")
-        
+
         conversation = user_proxy.initiate_chat( classify_agent , message=task_info,max_turns = 1)
         result = conversation.chat_history[1]['content']
         result_dict = extract_info_to_dict(  result )
-    
-        # da guide rag
         rag_da_guide  = search_da_guide(da_guide_dict, result_dict['任务类型'])
         del result_dict['任务类型']
     
@@ -193,12 +193,12 @@ class Titan():
         self.task = result 
         print('[任务已接收]:' + self.task)
         
-    def analysis(self,path,llm_config,max_round_num =27):
+    def analysis(self,path,llm_config,max_round_num):
         self.path = path
         
         task_info = self.task
         agent_prompts = self.prompts
-        rag_guide = self.guide
+        rag_guide = '***1.3版本已弃用'
         data_info = self.datacard
 
         def custom_speaker_selection_func(last_speaker: Agent, groupchat: autogen.GroupChat):
@@ -256,12 +256,12 @@ class Titan():
         executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) # 否则pipe error
         code_executor_agent = autogen.UserProxyAgent(name="code_executor_agent",human_input_mode="NEVER",code_execution_config={"executor": executor,"last_n_messages": 3,'max_retries':2}) # 否则pipe error
 
-        # agent analysis
-        groupchat = autogen.GroupChat(agents=[user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,
-                                              analyst,ragproxyagent,classify_agent],
-                                      messages=[],max_round=max_round_num,speaker_selection_method=custom_speaker_selection_func)
+        # groupchat agent analysis
+        groupchat = autogen.GroupChat(agents=[user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,analyst,classify_agent],
+                                          messages=[],enable_clear_history = True,
+                                          max_round=33,speaker_selection_method=custom_speaker_selection_func)
         manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
-        chat_history = ragproxyagent.initiate_chat(manager,message=ragproxyagent.message_generator,problem = '{任务}=' + task_info + data_info ) 
+        chat_history = classify_agent.initiate_chat(manager,message = task_info ) # 发言人.initiate_chat（听话人）
         
         #save
         import datetime
@@ -270,9 +270,11 @@ class Titan():
         file_name = now.strftime("%Y%m%d%H%M%S") + ".txt"
         with open(file_name, 'w') as file:
             file.write(str(chat_history))
-            print('save to : ','analysis_output.txt')
+            print('*** chat_history save to',file_name)
 
-        print("""✨ Titan-Analysis  ✨
+        print("""
+        --------------------------------------------------------------------------------
+        ✨ Titan-Analysis  ✨
         ✨ (〃’▽’〃) Let Agent be DataAnalyst ✨
         --------------------------------------------------------------------------------""")
 
