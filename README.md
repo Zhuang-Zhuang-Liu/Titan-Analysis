@@ -3,7 +3,7 @@
  
 > ## <span style="color:darkblue; font-size:30px; font-weight:bold; font-style:italic;">Titan-Analysis</span>
 > #### <span style="color:darkblue; font-size:20px; font-weight:bold; font-style:italic;">(〃’▽’〃) Let Agent be DataAnalyst</span>
-> #### <a href="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis">🔗 Version 1.2</a>
+> #### <a href="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis">🔗 Version 1.3</a>
 > #### 📚 https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis
 > #### 🤝 DeepSeek-Chat-V2 & AutoGen
 > #### 📢 Zhuang-Zhuang-Liu
@@ -29,17 +29,17 @@ ana = Titan(da_guide_dict = da_guide_dict,indicator_guide = indicator_guide,data
 ana.task_input()
 ana.analysis(path='test',llm_config=llm_config,max_round_num=27)
 ```
+
+## 🥪 Demo Case
+<h1 align="left">
+<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/demo_work_flow.gif" width="800" alt="WorkFlow_CN_2408">
+</h1>
+- Loading maybe slow , please wait for a while.
   
 ## ✨ Work Flow
 <h1 align="left">
 <img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/WorkFlow_CN_2408.png" width="800" alt="WorkFlow_CN_2408">
 </h1>
 
-## 🥪 Demo Case
-<h1 align="left">
-<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/demo_work_flow.gif" width="800" alt="WorkFlow_CN_2408">
-</h1>
-
-   
 ## 🔐 Copyright and License
 > #### This project follows the MIT License Agreement
