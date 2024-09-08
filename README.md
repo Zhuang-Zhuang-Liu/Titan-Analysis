@@ -19,13 +19,15 @@ sys.path.append( current_directory +'/Titan-Analysis')
 from agent_zoo.GroupChat import Titan,agent_create,show_chat_history,load_data_and_prompts
 llm_config_deep = {"config_list": [{ "model": "deepseek-chat","base_url": 'https://api.deepseek.com/v1',"api_key": "sk-xx","temperature": 1.0 }] }
 
-prompts,data_info,guide= load_data_and_prompts(dataset_card_path = current_directory +'/Titan-Analysis/dataset/demo_dataset_card.json',
-                                         agent_prompts_path = current_directory + '/Titan-Analysis/agent_zoo/agent_prompts.json',
-                                         guide_path = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide.json')
-
-ana = Titan(guide = guide,datacard=data_info,prompts=prompts )
+# load_data_and_prompts
+prompts,data_info,da_guide_dict,indicator_guide = load_data_and_prompts(dataset_card_path = current_directory +'/Titan-Analysis/dataset/',
+                                                  agent_prompts_path = current_directory +'/Titan-Analysis/agent_zoo/agent_prompts.json',
+                                                  da_guide_path = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide_dict.json',
+                                                  indicator_guide_path = current_directory +'/Titan-Analysis/rag_zoo/indicator_guide11.json' )
+# analysis
+ana = Titan(da_guide_dict = da_guide_dict,indicator_guide = indicator_guide,datacard=data_info,prompts=prompts,llm_config=llm_config)
 ana.task_input()
-result = ana.analysis(path,llm_config=llm_config_deep,max_round_num)
+ana.analysis(path='test',llm_config=llm_config,max_round_num=27)
 ```
   
 ## ✨ Work Flow
