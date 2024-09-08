@@ -35,12 +35,10 @@ ana.analysis(path='test',llm_config=llm_config,max_round_num=27)
 <img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/WorkFlow_CN_2408.png" width="800" alt="WorkFlow_CN_2408">
 </h1>
 
+## 🥪 Demo Case
 <h1 align="left">
-<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/test_gif.gif" width="800" alt="WorkFlow_CN_2408">
+<img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/demo_work_flow.gif" width="800" alt="WorkFlow_CN_2408">
 </h1>
-
-
-
 
    
 ## 🔐 Copyright and License
