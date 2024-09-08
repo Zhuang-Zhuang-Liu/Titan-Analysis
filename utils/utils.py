@@ -69,38 +69,3 @@ def generate_random_data():
 
 
 
-def data_info_put(dataset_card_path,show_data_info=False):    
-    # read demo dataset card
-    with open(dataset_card_path, 'r') as file:
-        dataset_card = json.load(file)
-
-    # input
-    print('请输入需要分析的数据集地址，如需使用默认数据集，请输入“默认”')
-    input_data_path = input()
-    if len(input_data_path) >= 20:
-        data_path = input_data_path
-        print("""请输入数据集的数据描述,格式为
-              {表名={xx表},
-               表主键={cust_id,biz_date}
-               字段描述={AA：数据类型为XX，数据格式为XX，业务含义是XX,
-                        BB：数据类型为XX，数据格式为XX，业务含义是XX,
-                        ...}
-               }""")
-        data_describe = input()
-    else:
-        data_describe = dataset_card['data_describe']
-        data_path = dataset_card['data_path']
-
-    # data_info
-    data_info = """\n{数据格式示例}={\n""" + pd.read_csv(data_path).head(3).to_string() \
-                    +  """}\n\n{数据地址}="""+ data_path \
-                    +  """}\n\n{数据描述}="""+ data_describe 
-    
-    if len(pd.read_csv(data_path).head(3).to_string()) < 20:
-        print("Warning: Current data reading may be incorrect")
-    if show_data_info is True:
-        print(data_info)
-    
-    return data_info
-
-
