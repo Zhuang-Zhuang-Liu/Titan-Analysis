@@ -154,6 +154,9 @@ class Titan():
         self.llm_config=llm_config
         
     def task_input(self):
+        agent_prompts = self.prompts
+        llm_config = self.llm_config
+        
         print('***请输入需要agent完成的任务，如需使用demo任务，请输入“默认”')
         demo_task = """{任务} ={把业务日期在24年5月之后和24年3月之前的用户分别定义为a组和b组，统计2个分组的男性用户在不同等级城市的人均销售收入，
                     告诉我这2个组的男性用户的人均销售收入，在哪个城市等级的差异是最大的}"""
@@ -161,7 +164,7 @@ class Titan():
         if len(task_info_input) < 10 : task_info = demo_task
         else: task_info = task_info_input
 
-        classify_agent = AssistantAgent(name="classify_agent",llm_config = self.llm_config,system_message=prompts['promopt_rag_classify_agent'])
+        classify_agent = AssistantAgent(name="classify_agent",llm_config = llm_config,system_message=agent_prompts['promopt_rag_classify_agent'])
         user_proxy = autogen.UserProxyAgent(name="Admin",code_execution_config=False,system_message="""A human admin""")
         
         conversation = user_proxy.initiate_chat( classify_agent , message=task_info,max_turns = 1)
