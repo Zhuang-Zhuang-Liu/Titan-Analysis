@@ -4,6 +4,8 @@ import random
 from PIL import Image
 import matplotlib.pyplot as plt
 import tempfile
+import datetime
+import sys
 from pathlib import Path
 from datetime import datetime, timedelta
 import copy
@@ -23,9 +25,6 @@ from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProx
 from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLimiter, MessageTokenLimiter
 
-from utils.utils import generate_random_data,data_info_put  # IO Data
-
-
 import os
 current_directory = os.getcwd()
 
@@ -36,14 +35,12 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
     executor = JupyterCodeExecutor(jupyter_server = LocalJupyterServer(),timeout= 30,output_dir=output_dir) #每次需要reset,否则pipe error
     code_executor_agent = autogen.UserProxyAgent(name="code_executor_agent",human_input_mode="NEVER",
                                                  code_execution_config={"executor": executor,"last_n_messages": 3,'max_retries':2}) 
-
     #knowledge rag
     guide_local_path = 'guide.txt'
     with open(guide_local_path, 'w') as file:file.write(rag_guide) 
     print('*** rag guide save to local：',guide_local_path )
     classify_agent = AssistantAgent(name="classify_agent",llm_config=llm_config,system_message=agent_prompts['promopt_rag_classify_agent']) 
-
-
+    
     ragproxyagent = RetrieveUserProxyAgent(name="ragproxyagent",retrieve_config={"task": "qa","vector_db": "chroma",
                                                                                  "update_context": True, #选中则可以更新rag database
                                                                                  "embedding_model": "all-MiniLM-L6-v2","get_or_create": True,  
@@ -129,11 +126,9 @@ def search_da_guide(data_analysis_guide, keyword):
     for key, value in data_analysis_guide.items():
         if key in keyword or keyword in key:
             print("***已检索到【数据分析指南】:{}***".format(key))
-            print('-----------------------------------------------------------') 
             rag_da_guide = "\n{数据分析指南}:" + keyword + '=' + str(value) 
             return rag_da_guide
     
-
 def search_indicator_guide(indicator_guide, keyword_list):
     rag_indicator_guide = "\n{指标口径指南}:"
     for i in keyword_list:
