@@ -162,6 +162,7 @@ class Titan():
         llm_config = self.llm_config
         indicator_guide = self.indicator_guide
         da_guide_dict = self.da_guide_dict
+        data_info = self.datacard
         
         print('***请输入需要agent完成的任务，如需使用demo任务，请输入“默认”')
         demo_task = """{任务} ={把业务日期在24年5月之后和24年3月之前的用户分别定义为a组和b组，统计2个分组的男性用户在不同等级城市的人均销售收入，
