@@ -77,7 +77,7 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
     return user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,analyst,ragproxyagent,classify_agent
 
 
-def load_data_and_prompts(dataset_card_path,agent_prompts_path,guide_path):
+def load_data_and_prompts(dataset_card_path,agent_prompts_path,da_guide_path,indicator_guide_path):
     import json
     import pandas as pd
     # load prompts
@@ -91,11 +91,17 @@ def load_data_and_prompts(dataset_card_path,agent_prompts_path,guide_path):
             with open(file_path, 'r') as file:
                 json_content = json.load(file)
                 merged_data_info += '\n' + str(json_content)
-    # load guide
-    with open(guide_path, 'r') as file:
-        guide = json.load(file)['demo_da_guide']
+
+    # load da guide
+    with open('/kaggle/working/Titan-Analysis/rag_zoo/data_analysis_guide_dict.json', 'r') as f:
+        da_guide_dict = json.load(f)
+
+    # load indicator_guide
+    with open(current_directory +'/Titan-Analysis/rag_zoo/indicator_guide11.json', 'r') as f:
+        indicator_guide = json.load(f)
+    
         
-    return prompts,merged_data_info,guide
+    return prompts,merged_data_info,da_guide_dict,indicator_guide
 
 
 def show_chat_history( result ):
