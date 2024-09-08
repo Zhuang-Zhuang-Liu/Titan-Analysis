@@ -84,16 +84,18 @@ def load_data_and_prompts(dataset_card_path,agent_prompts_path,guide_path):
     with open(agent_prompts_path, 'r') as file:  prompts = json.load(file)
 
     # load data_info
-    with open(dataset_card_path, 'r') as file:
-        dataset_card = json.load(file)
-        data_info = """\n{数据格式示例}={\n""" + pd.read_csv(dataset_card['data_path']).head(3).to_string() \
-                        +  """}\n\n{数据地址}="""+ dataset_card['data_path'] \
-                        +  """}\n\n{数据描述}="""+ dataset_card['data_describe']
-        
+    merged_data_info = "\n{数据库指南}:"
+    for filename in os.listdir(dataset_card_path):
+        if filename.startswith("DataCard") and filename.endswith(".json"):
+            file_path = os.path.join(directory, filename)
+            with open(file_path, 'r') as file:
+                json_content = json.load(file)
+                merged_data_info += '\n' + str(json_content)
+    # load guide
     with open(guide_path, 'r') as file:
         guide = json.load(file)['demo_da_guide']
         
-    return prompts,data_info,guide
+    return prompts,merged_data_info,guide
 
 
 def show_chat_history( result ):
