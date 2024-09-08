@@ -33,7 +33,7 @@ ana.analysis(path='test',llm_config=llm_config,max_round_num=27)
 ## 🥪 Demo Case
 <h1 align="left">
 <img src="https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis/blob/main/picture/demo_work_flow.gif" width="800" alt="WorkFlow_CN_2408">
-> #### Loading maybe slow , please wait for a while.
+<small>备注：此演示案例加载速度可能因网络等因素而有所不同。</small>
 </h1>
   
 ## ✨ Work Flow
