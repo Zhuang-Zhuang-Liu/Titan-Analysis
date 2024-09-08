@@ -106,6 +106,43 @@ def show_chat_history( result ):
             file.write(str(result) + '\n')
             print("***chat_history saved***")
 
+#################################################
+
+import re
+def extract_info_to_dict(text):
+    pairs = re.findall(r'\{(.*?)\}=\{(.*?)\}', text)  # 使用正则表达式提取键值对
+    result_dict = {}
+    for key, value in pairs:
+        result_dict[key] = value
+    return result_dict
+
+def search_da_guide(data_analysis_guide, keyword):
+    """在给定的数据分析指南字典中，根据输入的关键词进行模糊匹配，查找对应的键值对"""
+    for key, value in data_analysis_guide.items():
+        if key in keyword or keyword in key:
+            print("***已检索到【数据分析指南】:{}***".format(key))
+            print('-----------------------------------------------------------') 
+            rag_da_guide = "\n{数据分析指南}:" + keyword + '=' + str(value) 
+            return rag_da_guide
+    
+
+def search_indicator_guide(indicator_guide, keyword_list):
+    rag_indicator_guide = "\n{指标口径指南}:"
+    for i in keyword_list:
+        found = False
+        print("***正在检索与【{}】有关的【指标口径指南】***".format(i))
+        for key, value in indicator_guide.items():
+            if key in i or i in key:
+                print("***已检索到相关内容:{}***".format( str(value))  )
+                found = True
+                rag_indicator_guide = rag_indicator_guide + i + '='+ str(value) + "   "
+        if not found:  # 如果内层循环结束后仍未找到匹配项
+            print("***未检索到相关的【指标口径指南】,Titan 要自己发挥啦***")
+        print('-----------------------------------------------------------') 
+    rag_indicator_guide = rag_indicator_guide
+    return rag_indicator_guide
+
+#################################################
 
 class Titan():
     titan_type = 'date_analysis'
@@ -135,45 +172,49 @@ class Titan():
         data_info = self.datacard
 
         def custom_speaker_selection_func(last_speaker: Agent, groupchat: autogen.GroupChat):
+            """
+            Define: a customized speaker selection function.
+            Returns: Return an `Agent` class or a string from ['auto', 'manual', 'random', 'round_robin',None] to select a default method to use.
+            """
             messages = groupchat.messages
-            #early stop
+        
             error_count = sum(1 for msg in messages if "(execution failed)" in msg["content"] or "FileNotFoundError" in msg["content"] )
             if error_count >= 2:
-                print('代码已累计报错2次，重新描述问题试试吧')
+                print('当前已累计报错2次，请重新描述问题试试吧')
                 return None
-
-            if last_speaker is ragproxyagent:
-                return classify_agent
-
+        
             if last_speaker is classify_agent :
                 if  "表信息查询" not in messages[-1]["content"] :
-                    return planner
+                    print('/n***关于以上信息，如果您有需要嘱托的，请发给我(如果没有请单击空格)***/n')
+                    return user_proxy
                 else:
                     return analyst
-
+                
+            if last_speaker is user_proxy:
+                return planner   
+                
             if last_speaker is planner:
                 return project_manager
-
+            
             if last_speaker is project_manager:
                 if  "计划已完成" not in messages[-1]["content"] :
                     return code_writer_agent
                 else:
                     return analyst
-
+            
             if last_speaker is code_writer_agent:
                 if "Code_Execute_Successful" not in messages[-1]["content"] :
                     return code_executor_agent
                 else:
                     return project_manager
-
+        
             if last_speaker is code_executor_agent:
                     return code_writer_agent
-
+        
             if last_speaker is analyst :
                 return checker    
             else:
                 return None # None=终止对话
-
 
         # func:agent create
         user_proxy,code_writer_agent,code_executor_agent,checker,project_manager,planner,analyst,ragproxyagent,\
