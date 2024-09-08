@@ -147,10 +147,11 @@ def search_indicator_guide(indicator_guide, keyword_list):
 class Titan():
     titan_type = 'date_analysis'
 
-    def __init__(self, guide, datacard, prompts):
+    def __init__(self, guide, datacard, prompts,llm_config):
         self.guide = guide
         self.datacard = datacard
         self.prompts=prompts
+        self.llm_config=llm_config
         
     def task_input(self):
         print('***请输入需要agent完成的任务，如需使用demo任务，请输入“默认”')
@@ -160,7 +161,7 @@ class Titan():
         if len(task_info_input) < 10 : task_info = demo_task
         else: task_info = task_info_input
 
-        classify_agent = AssistantAgent(name="classify_agent",llm_config=llm_config,system_message=prompts['promopt_rag_classify_agent'])
+        classify_agent = AssistantAgent(name="classify_agent",llm_config = self.llm_config,system_message=prompts['promopt_rag_classify_agent'])
         user_proxy = autogen.UserProxyAgent(name="Admin",code_execution_config=False,system_message="""A human admin""")
         
         conversation = user_proxy.initiate_chat( classify_agent , message=task_info,max_turns = 1)
