@@ -80,6 +80,7 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
 def load_data_and_prompts(dataset_card_path,agent_prompts_path,da_guide_path,indicator_guide_path):
     import json
     import pandas as pd
+    
     # load prompts
     with open(agent_prompts_path, 'r') as file:  prompts = json.load(file)
 
@@ -87,7 +88,7 @@ def load_data_and_prompts(dataset_card_path,agent_prompts_path,da_guide_path,ind
     merged_data_info = "\n{数据库指南}:"
     for filename in os.listdir(dataset_card_path):
         if filename.startswith("DataCard") and filename.endswith(".json"):
-            file_path = os.path.join(directory, filename)
+            file_path = os.path.join(dataset_card_path, filename)
             with open(file_path, 'r') as file:
                 json_content = json.load(file)
                 merged_data_info += '\n' + str(json_content)
@@ -99,8 +100,7 @@ def load_data_and_prompts(dataset_card_path,agent_prompts_path,da_guide_path,ind
     # load indicator_guide
     with open(current_directory +'/Titan-Analysis/rag_zoo/indicator_guide11.json', 'r') as f:
         indicator_guide = json.load(f)
-    
-        
+         
     return prompts,merged_data_info,da_guide_dict,indicator_guide
 
 
