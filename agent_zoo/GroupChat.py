@@ -159,6 +159,10 @@ class Titan():
         task_info_input = input()
         if len(task_info_input) < 10 : task_info = demo_task
         else: task_info = task_info_input
+
+        classify_agent = AssistantAgent(name="classify_agent",llm_config=llm_config,system_message=prompts['promopt_rag_classify_agent'])
+        user_proxy = autogen.UserProxyAgent(name="Admin",code_execution_config=False,system_message="""A human admin""")
+        
         conversation = user_proxy.initiate_chat( classify_agent , message=task_info,max_turns = 1)
         result = conversation.chat_history[1]['content']
         result_dict = extract_info_to_dict(  result )
