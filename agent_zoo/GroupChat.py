@@ -153,14 +153,28 @@ class Titan():
         self.prompts=prompts
         
     def task_input(self):
-        print('***请输入数据分析任务，如使用默认任务，请输入“默认”***')
+        print('***请输入需要agent完成的任务，如需使用demo任务，请输入“默认”')
+        demo_task = """{任务} ={把业务日期在24年5月之后和24年3月之前的用户分别定义为a组和b组，统计2个分组的男性用户在不同等级城市的人均销售收入，
+                    告诉我这2个组的男性用户的人均销售收入，在哪个城市等级的差异是最大的}"""
         task_info_input = input()
-        task_info_default="""{销售收入大于1万、销售成本小于700的用户，主要分布在哪些年龄段和哪些等级城市，先单独分析、然后交叉分析这2个维度
-                           备注： 年龄段的划分：18~30岁=青年，30~60=中年，60岁以上=老年}"""
-        if len(task_info_input) <= 5:
-            self.task = task_info_default
-        else:
-            self.task = task_info_input
+        if len(task_info_input) < 10 : task_info = demo_task
+        else: task_info = task_info_input
+        conversation = user_proxy.initiate_chat( classify_agent , message=task_info,max_turns = 1)
+        result = conversation.chat_history[1]['content']
+        result_dict = extract_info_to_dict(  result )
+    
+        # da guide rag
+        rag_da_guide  = search_da_guide(da_guide_dict, result_dict['任务类型'])
+        del result_dict['任务类型']
+    
+        # indicator guide rag
+        split_list = result_dict['任务涉及的指标及标签'].split(',')  #按照,拆分为列表
+        rag_indicator_guide = search_indicator_guide(indicator_guide, split_list)
+        del result_dict['任务涉及的指标及标签']
+    
+        # join
+        result = str(result_dict) +  str(rag_da_guide) + rag_indicator_guide + data_info
+        self.task = result 
         print('[任务已接收]:' + self.task)
         
     def analysis(self,path,llm_config,max_round_num =27):
