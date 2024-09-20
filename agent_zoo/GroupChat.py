@@ -20,8 +20,10 @@ from autogen import AssistantAgent, UserProxyAgent,ConversableAgent
 from autogen.coding import LocalCommandLineCodeExecutor
 from autogen.coding import CodeBlock
 from autogen.coding.jupyter import JupyterCodeExecutor, LocalJupyterServer
-from autogen.agentchat.contrib.retrieve_assistant_agent import RetrieveAssistantAgent
-from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
+
+#from autogen.agentchat.contrib.retrieve_assistant_agent import RetrieveAssistantAgent
+#from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
+
 from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 from autogen.agentchat.contrib.capabilities.transforms import  MessageHistoryLimiter, MessageTokenLimiter
 
@@ -40,13 +42,6 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
     with open(guide_local_path, 'w') as file:file.write(rag_guide) 
     print('*** rag guide save to local：',guide_local_path )
     classify_agent = AssistantAgent(name="classify_agent",llm_config=llm_config,system_message=agent_prompts['promopt_rag_classify_agent']) 
-    
-    ragproxyagent = RetrieveUserProxyAgent(name="ragproxyagent",retrieve_config={"task": "qa","vector_db": "chroma",
-                                                                                 "update_context": True, #选中则可以更新rag database
-                                                                                 "embedding_model": "all-MiniLM-L6-v2","get_or_create": True,  
-                                                                                 "docs_path": guide_local_path  },  human_input_mode="NEVER")
-
-    ragproxyagent.reset()
 
     user_proxy = autogen.UserProxyAgent(name="Admin",code_execution_config=False,
                                         system_message="""A human admin.Plan execution needs to be approved by this admin.""")
@@ -71,7 +66,7 @@ def agent_create(path,llm_config,agent_prompts,rag_guide):
     #context_handling.add_to_agent(code_writer_agent)
     print('***agent_ready***')
     
-    return user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,analyst,ragproxyagent,classify_agent
+    return user_proxy,code_writer_agent,code_executor_agent, checker,project_manager,planner,analyst,classify_agent
 
 
 def load_data_and_prompts(dataset_card_path,agent_prompts_path,da_guide_path,indicator_guide_path):
@@ -244,7 +239,7 @@ class Titan():
                 return None # None=终止对话
 
         # func:agent create
-        user_proxy,code_writer_agent,code_executor_agent,checker,project_manager,planner,analyst,ragproxyagent,\
+        user_proxy,code_writer_agent,code_executor_agent,checker,project_manager,planner,analyst,
         classify_agent = agent_create(path=path,llm_config = llm_config, agent_prompts=agent_prompts, rag_guide=rag_guide)
 
         # for error : broken pip
