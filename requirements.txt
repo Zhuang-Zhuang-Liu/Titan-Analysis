@@ -1,5 +1,5 @@
 openai
-pyautogen==0.2.32
-'pyautogen[jupyter-executor]'
-"pyautogen[retrievechat]"
+ag2==0.2.32
+'ag2[jupyter-executor]'
+"ag2[retrievechat]"
 ipywidgets
