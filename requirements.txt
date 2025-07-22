@@ -1,5 +1,308 @@
-openai
-pyautogen==0.2.32
-'pyautogen[jupyter-executor]'
-"pyautogen[retrievechat]"
-ipywidgets
+# Core LLM and AI Framework
+openai==1.95.1
+ag2==0.9.6
+ag2[jupyter-executor]
+ag2[retrievechat]
+
+# Data Processing and Analysis
+pandas==2.3.1
+numpy==1.26.4
+scipy==1.13.1
+scikit-learn==1.6.1
+
+# Data Visualization
+matplotlib==3.9.4
+ipywidgets==8.1.7
+
+# Jupyter and Interactive Computing
+ipykernel==6.29.5
+ipython==8.18.1
+jupyter-client==8.6.3
+jupyter-core==5.8.1
+jupyter-server==2.16.0
+jupyter-kernel-gateway==3.0.1
+jupyter-server-terminals==0.5.3
+jupyterlab-pygments==0.3.0
+jupyterlab_widgets==3.0.15
+widgetsnbextension==4.0.14
+
+# Machine Learning and AI
+torch==2.7.1
+transformers==4.53.2
+sentence-transformers==5.0.0
+tokenizers==0.21.2
+safetensors==0.5.3
+onnxruntime==1.19.2
+FLAML==2.3.5
+
+# Vector Database and RAG
+chromadb==1.0.15
+
+# Web Scraping and Document Processing
+beautifulsoup4==4.13.4
+markdownify==1.1.0
+pypdf==5.8.0
+
+# HTTP and API
+httpx==0.28.1
+requests==2.32.4
+urllib3==2.5.0
+websocket-client==1.8.0
+websockets==15.0.1
+
+# Data Serialization and Configuration
+PyYAML==6.0.2
+python-dotenv==1.1.1
+protobuf==4.25.3
+
+# Utilities and Helpers
+tqdm==4.67.1
+termcolor==3.1.0
+tiktoken==0.9.0
+rich==14.0.0
+typer==0.16.0
+
+# System and Process Management
+psutil==7.0.0
+docker==7.1.0
+
+# Date and Time
+python-dateutil==2.9.0.post0
+pytz==2025.2
+tzdata==2025.2
+
+# Security and Authentication
+bcrypt==4.3.0
+certifi==2025.7.14
+google-auth==2.40.3
+oauthlib==3.3.1
+rsa==4.9.1
+
+# Network and Communication
+grpcio==1.73.1
+uvicorn==0.35.0
+uvloop==0.21.0
+
+# File and Path Handling
+watchfiles==1.1.0
+filelock==3.18.0
+
+# JSON and Schema
+jsonschema==4.24.0
+orjson==3.10.18
+
+# Text Processing
+regex==2024.11.6
+wcwidth==0.2.13
+
+# Development and Build Tools
+build==1.2.2.post1
+pyproject_hooks==1.2.0
+
+# Monitoring and Logging
+prometheus_client==0.22.1
+python-json-logger==3.3.0
+coloredlogs==15.0.1
+
+# Dependencies for specific features
+# For Jupyter executor
+jupyter-events==0.12.0
+comm==0.2.2
+traitlets==5.14.3
+
+# For RAG functionality
+huggingface-hub==0.33.4
+fsspec==2025.5.1
+
+# For data processing
+joblib==1.5.1
+threadpoolctl==3.6.0
+
+# For visualization
+pillow==11.3.0
+fonttools==4.58.5
+kiwisolver==1.4.7
+pyparsing==3.2.3
+cycler==0.12.1
+contourpy==1.3.0
+
+# For web interface
+jinja2==3.1.6
+markdown-it-py==3.0.0
+mdurl==0.1.2
+
+# For code execution
+debugpy==1.8.14
+pexpect==4.9.0
+ptyprocess==0.7.0
+
+# For documentation
+nbconvert==7.16.6
+nbformat==5.10.4
+nbclient==0.10.2
+mistune==3.1.3
+pandocfilters==1.5.1
+bleach==6.2.0
+defusedxml==0.7.1
+tinycss2==1.4.0
+webencodings==0.5.1
+
+# For async operations
+anyio==4.9.0
+nest-asyncio==1.6.0
+tornado==6.5.1
+
+# For type checking and validation
+pydantic==2.11.7
+pydantic_core==2.33.2
+typing_extensions==4.14.1
+typing-inspection==0.4.1
+
+# For mathematical operations
+sympy==1.14.0
+mpmath==1.3.0
+networkx==3.2.1
+
+# For caching and storage
+diskcache==5.6.3
+cachetools==5.5.2
+
+# For configuration and settings
+click==8.1.8
+shellingham==1.5.4
+
+# For monitoring and telemetry
+opentelemetry-api==1.27.0
+opentelemetry-sdk==1.27.0
+opentelemetry-exporter-otlp-proto-grpc==1.27.0
+opentelemetry-exporter-otlp-proto-common==1.27.0
+opentelemetry-proto==1.27.0
+opentelemetry-semantic-conventions==0.48b0
+
+# For data validation
+jsonschema-specifications==2025.4.1
+referencing==0.36.2
+rpds-py==0.26.0
+
+# For HTTP handling
+httpcore==1.0.9
+httptools==0.6.4
+h11==0.16.0
+
+# For authentication and security
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+requests-oauthlib==2.0.0
+
+# For data encoding
+pybase64==1.4.1
+mmh3==5.1.0
+
+# For text processing
+jedi==0.19.2
+parso==0.8.4
+prompt_toolkit==3.0.51
+pygments==2.19.2
+
+# For system compatibility
+appnope==0.1.4
+platformdirs==4.3.8
+
+# For data structures
+attrs==25.3.0
+overrides==7.7.0
+
+# For time handling
+arrow==1.3.0
+isoduration==20.11.0
+
+# For code execution
+executing==2.2.0
+stack-data==0.6.3
+asttokens==3.0.0
+pure_eval==0.2.3
+
+# For web interface
+jupyter_server_terminals==0.5.3
+terminado==0.18.1
+
+# For data processing
+six==1.17.0
+sniffio==1.3.1
+idna==3.10
+charset-normalizer==3.4.2
+
+# For documentation
+Send2Trash==1.8.3
+
+# For validation
+fastjsonschema==2.21.1
+fqdn==1.5.1
+rfc3339-validator==0.1.4
+rfc3986-validator==0.1.1
+webcolors==24.11.1
+uri-template==1.3.0
+
+# For authentication
+argon2-cffi==25.1.0
+argon2-cffi-bindings==21.2.0
+cffi==1.17.1
+pycparser==2.22
+
+# For data handling
+importlib_metadata==8.4.0
+importlib_resources==6.5.2
+zipp==3.23.0
+
+# For async operations
+jiter==0.10.0
+
+# For monitoring
+posthog==5.4.0
+backoff==2.2.1
+
+# For data processing
+PyPika==0.48.9
+
+# For configuration
+tomli==2.2.1
+
+# For type checking
+types-python-dateutil==2.9.0.20250708
+
+# For system operations
+humanfriendly==10.0
+
+# For data handling
+wrapt==1.17.2
+Deprecated==1.2.18
+
+# For web scraping
+soupsieve==2.7
+
+# For data processing
+distro==1.9.0
+
+# For time handling
+durationpy==0.10
+
+# For error handling
+exceptiongroup==1.3.0
+
+# For data handling
+jsonpointer==3.0.0
+
+# For data processing
+tenacity==9.1.2
+
+# For data handling
+flatbuffers==25.2.10
+
+# For data processing
+googleapis-common-protos==1.70.0
+
+# For data processing
+kubernetes==33.1.0
+
+# For data processing
+hf-xet==1.1.5
