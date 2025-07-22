@@ -9,14 +9,14 @@ from agent_zoo.GroupChat import Titan, load_data_and_prompts
 def main():
     parser = argparse.ArgumentParser(description='Titan-Analysis-V1.4')
     parser.add_argument('--api-key', type=str, help='API')
-    parser.add_argument('--output-path', type=str, default='demo_case/test', help='output path')
+    parser.add_argument('--output-path', type=str, default='agent_space/v1.4', help='output path')
     parser.add_argument('--max-rounds', type=int, default=3, help='max rounds')
     
     args = parser.parse_args()
     
     current_directory = os.path.abspath(os.path.dirname(__file__))
     
-    # LLM配置
+    # LLM config
     api_key = args.api_key 
     llm_config = {
         "config_list": [{

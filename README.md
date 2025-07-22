@@ -8,27 +8,61 @@
 > #### 🤝 DeepSeek-Chat-V2 & AutoGen
 > #### 📢 Zhuang-Zhuang-Liu
 
- 
-   
-## 🚀 Getting Started
+## 🚀 Quick Start
+
+### Method 1: Command Line Usage
+```bash
+# Clone the project
+git clone https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis.git
+cd Titan-Analysis
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run analysis (API key required)
+python main.py --api-key "your-api-key" --output-path "output" --max-rounds 5
+```
+
+### Method 2: Python Code Usage
 ```python
-import shutil,sys,os
+import sys
+import os
+
+# Add project path
 current_directory = os.getcwd()
-!git clone https://github.com/Zhuang-Zhuang-Liu/Titan-Analysis.git
-sys.path.append( current_directory +'/Titan-Analysis') 
+sys.path.append(current_directory + '/Titan-Analysis')
 
-from agent_zoo.GroupChat import Titan,agent_create,show_chat_history,load_data_and_prompts
-llm_config_deep = {"config_list": [{ "model": "deepseek-chat","base_url": 'https://api.deepseek.com/v1',"api_key": "sk-xx","temperature": 1.0 }] }
+from agent_zoo.GroupChat import Titan, agent_create, show_chat_history, load_data_and_prompts
 
-# load_data_and_prompts
-prompts,data_info,da_guide_dict,indicator_guide = load_data_and_prompts(dataset_card_path = current_directory +'/Titan-Analysis/dataset/',
-                                                  agent_prompts_path = current_directory +'/Titan-Analysis/agent_zoo/agent_prompts.json',
-                                                  da_guide_path = current_directory +'/Titan-Analysis/rag_zoo/data_analysis_guide_dict.json',
-                                                  indicator_guide_path = current_directory +'/Titan-Analysis/rag_zoo/indicator_guide11.json' )
-# analysis
-ana = Titan(da_guide_dict = da_guide_dict,indicator_guide = indicator_guide,datacard=data_info,prompts=prompts,llm_config=llm_config)
-ana.task_input()
-ana.analysis(path='test',llm_config=llm_config,max_round_num=27)
+# Configure LLM
+llm_config = {
+    "config_list": [{
+        "model": "deepseek-chat",
+        "base_url": 'https://api.deepseek.com/v1',
+        "api_key": "your-api-key",
+        "temperature": 1.0
+    }]
+}
+
+# Load data and prompts
+prompts, data_info, da_guide_dict, indicator_guide = load_data_and_prompts(
+    dataset_card_path=current_directory + '/Titan-Analysis/dataset/',
+    agent_prompts_path=current_directory + '/Titan-Analysis/agent_zoo/agent_prompts.json',
+    da_guide_path=current_directory + '/Titan-Analysis/rag_zoo/data_analysis_guide_dict.json',
+    indicator_guide_path=current_directory + '/Titan-Analysis/rag_zoo/indicator_guide11.json'
+)
+
+# Create analyzer and run
+analyzer = Titan(
+    da_guide_dict=da_guide_dict,
+    indicator_guide=indicator_guide,
+    datacard=data_info,
+    prompts=prompts,
+    llm_config=llm_config
+)
+
+analyzer.task_input()
+analyzer.analysis(path='test', llm_config=llm_config, max_round_num=27)
 ```
 
   
