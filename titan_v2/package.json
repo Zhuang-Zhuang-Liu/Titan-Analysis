@@ -1,0 +1,64 @@
+{
+  "name": "titan-v",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reactflow/background": "^11.3.14",
+    "@reactflow/controls": "^11.2.14",
+    "@reactflow/core": "^11.11.4",
+    "@reactflow/minimap": "^11.7.14",
+    "@types/dagre": "^0.7.53",
+    "@types/mermaid": "^9.1.0",
+    "@types/node": "^16.18.0",
+    "@types/papaparse": "^5.3.16",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "cors": "^2.8.5",
+    "dagre": "^0.8.5",
+    "express": "^4.21.2",
+    "lucide-react": "^0.536.0",
+    "mermaid": "^11.9.0",
+    "papaparse": "^5.5.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-flow-renderer": "^10.3.17",
+    "react-markdown": "^10.1.0",
+    "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.6.1",
+    "reactflow": "^11.11.4",
+    "tailwind-scrollbar": "^3.0.5",
+    "typescript": "^4.9.0",
+    "web-vitals": "^2.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.3.0"
+  },
+  "scripts": {
+    "start": "node start-dev.js",
+    "start:only": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
