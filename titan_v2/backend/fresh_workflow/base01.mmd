@@ -1,0 +1,14 @@
+flowchart TD
+    Planner["Planner"]
+    Assigner["Assigner"]
+    Programmer["Programmer"]
+    Analyst["Analyst"]
+    decision{"计划已完成?"}
+    head(["bigin"])
+
+    Planner -->|"任务规划"| Assigner
+    Assigner --> decision
+    decision -->|"否"| Programmer
+    Programmer -->|"执行结果"| Assigner
+    decision -->|"是"| Analyst
+    head --> Planner

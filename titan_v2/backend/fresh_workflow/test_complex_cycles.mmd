@@ -1,0 +1,57 @@
+flowchart TD
+    Start([开始])
+    Input["输入数据"]
+    Validate{"数据验证"}
+    Process["数据处理"]
+    Analyze["数据分析"]
+    Decision1{"结果是否满意?"}
+    Decision2{"是否需要迭代?"}
+    Optimize["优化算法"]
+    Report["生成报告"]
+    End([结束])
+    Error["错误处理"]
+    Retry["重试机制"]
+    Backup["备份数据"]
+    Restore["恢复数据"]
+
+    %% 主流程
+    Start --> Input
+    Input --> Validate
+    
+    %% 验证分支
+    Validate -->|通过| Process
+    Validate -->|失败| Error
+    
+    %% 错误处理环
+    Error --> Retry
+    Retry --> Input
+    
+    %% 主处理流程
+    Process --> Analyze
+    Analyze --> Decision1
+    
+    %% 第一个决策环
+    Decision1 -->|满意| Decision2
+    Decision1 -->|不满意| Optimize
+    Optimize --> Analyze
+    
+    %% 第二个决策环
+    Decision2 -->|需要| Process
+    Decision2 -->|不需要| Report
+    
+    %% 报告生成
+    Report --> End
+    
+    %% 备份和恢复环
+    Process --> Backup
+    Backup --> Restore
+    Restore --> Process
+    
+    %% 从结束回到开始（大环）
+    End -->|重新开始| Start
+    
+    %% 额外的环：从分析直接到优化
+    Analyze -->|直接优化| Optimize
+    
+    %% 从报告回到分析（形成另一个环）
+    Report -->|需要进一步分析| Analyze

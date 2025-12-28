@@ -1,0 +1,47 @@
+{
+  "agents": [
+    {
+      "name": "planner",
+      "role_name": "planner",
+      "status": "waiting",
+      "memory": "Waiting for Task",
+      "agent_id": "planner"
+    },
+    {
+      "name": "assigner",
+      "role_name": "assigner",
+      "status": "waiting",
+      "memory": "Waiting for Task",
+      "agent_id": "assigner"
+    },
+    {
+      "name": "programmer",
+      "role_name": "programmer",
+      "status": "waiting",
+      "memory": "\n    ================================================================================\n    数据库指南：\n    --------------------------------------------------\n    表名(table_name): 每日增量订单信息表\n文件名(file_name): daily_incremental_order.csv\n字段描述(field_description): order_id：订单唯一标识 (string), cust_id：客户ID (string), item_id：商品ID (string), channel：订单渠道 (string: 淘宝/拼多多), original_price：商品原价 (int), discount_rate：商品折扣率 (float: 0.7/0.8/0.9/等或无折扣), discounted_price：商品折扣后价格 (int), coupon_discount：优惠券抵扣金额 (int), coupon_id：使用的优惠券ID (string), actual_amount：订单实际支付金额 (int), grass_date：数据日期 (string: YYYY/MM/DD), coupon_type：优惠券类型 (string: discount/cash/none)\n字段(COLUMNS): order_id, cust_id, item_id, channel, original_price, discount_rate, discounted_price, coupon_discount, coupon_id, actual_amount, grass_date, coupon_type\n主键(PRIMARY KEY): order_id\n分区(PARTITION): grass_date\n--------------------------------------------------\n表名(table_name): 每日增量客户APP行为表\n文件名(file_name): daily_incremental_cust_app_behavior.csv\n字段描述(field_description): biz_no：行为记录唯一标识 (int), open_id：客户开放ID (string), app_page：APP页面类型 (string: home_page/product_page/search_page/cart_page/profile_page), action_type：行为类型 (string: view/click/add_cart/purchase/search), time_spent：页面停留时间(毫秒) (int), device_type：设备类型 (string: iOS/Android/PC), location：地理位置 (string: 国内城市名), action_time：行为发生时间 (string: YYYY-MM-DD HH:MM:SS), ip_city：IP所在城市 (string: 国内城市名), page_value：页面相关值 (string: 产品ID/分类名/空), session_id：会话ID (string: openid_日期_序号), grass_date：数据日期 (string: YYYY-MM-DD)\n字段(COLUMNS): biz_no, open_id, app_page, action_type, time_spent, device_type, location, action_time, ip_city, page_value, session_id, grass_date\n主键(PRIMARY KEY): biz_no\n分区(PARTITION): grass_date\n--------------------------------------------------\n表名(table_name): 每日全量客户信息表\n文件名(file_name): full_sync_cust.csv\n字段描述(field_description): cust_id：客户ID，累计包含所有有过APP行为的客户 (string), open_id：客户开放ID (string: 字母数字组合), orders_cnt：基于历史累积订单数据统计 (int), sex：性别 (int: 1:男, 0:女), n_age：年龄 (int: 18-65), ltv_360d：360天生命周期价值 (string: A/B/C), open_date：开户日期 (string: YYYY/MM/DD), last_visit_date：最后访问日期 (string: YYYY/MM/DD), city_level：城市等级 (int: 1:一线, 2:二线, 3:三线, 4:四线, 5:五线), create_timestamp：创建时间戳 (string: YYYY-MM-DD HH:MM:SS), region：地区 (string: 国内地区), fixed_random_num：每个用户的固定随机数(1-100) (int), grass_date：数据日期 (string: YYYY/MM/DD)\n字段(COLUMNS): cust_id, open_id, orders_cnt, sex, n_age, ltv_360d, open_date, last_visit_date, city_level, create_timestamp, region, fixed_random_num, grass_date\n主键(PRIMARY KEY): cust_id,open_id,grass_date\n分区(PARTITION): grass_date\n--------------------------------------------------\n表名(table_name): 每日全量商品信息表\n文件名(file_name): full_sync_item.csv\n字段描述(field_description): item_id：商品ID (string: I{8位数字}), category：商品分类 (string: 电子产品/服装/家居/美妆/食品/运动/图书/母婴), is_eligible：是否有效 (string: Y/N), price：商品价格 (int), cost_price：商品进价 (int), is_discounted：是否参与折扣 (string: Y/N), discount_rate：折扣率 (float: 0.7/0.8/0.9或无折扣), rating：商品评分 (int: 1-5), Origin：商品产地 (string: 国内/日韩/欧美/东南亚/其他), grass_date：数据日期 (string: YYYY/MM/DD)\n字段(COLUMNS): item_id, category, is_eligible, price, cost_price, is_discounted, discount_rate, rating, Origin, grass_date\n主键(PRIMARY KEY): item_id,grass_date\n分区(PARTITION): grass_date\n--------------------------------------------------\n表名(table_name): 每日增量消息发送表\n文件名(file_name): daily_incremental_message.csv\n字段描述(field_description): message_id：消息唯一标识 (string), cust_id：客户ID，支持给当天已经在用户表里的存量用户发送消息，允许同一客户每天接收多条消息 (string: C{7位数字}), channel：消息渠道 (string: 短信/电话), is_success：是否发送成功 (string: Y/N), grass_date：数据日期 (string: YYYY/MM/DD)\n字段(COLUMNS): message_id, cust_id, channel, is_success, grass_date\n主键(PRIMARY KEY): message_id\n分区(PARTITION): grass_date\n--------------------------------------------------\n表名(table_name): 每日增量优惠券表\n文件名(file_name): daily_incremental_coupon.csv\n字段描述(field_description): coupon_id：优惠券唯一标识 (string), cust_id：客户ID，支持每日向一些用户发放优惠券 (string), status：优惠券状态 (string: 可用/已用/过期), issue_date：发放日期 (string: YYYY/MM/DD), expiry_date：过期日期，优惠券生效后xx天过期 (string: YYYY/MM/DD), discount_amount：优惠金额或折扣率 (float: 折扣率0.8/0.85/0.9 或 int: 固定金额10-50), coupon_type：优惠券类型 (string: discount/cash), used_date：使用日期 (string: YYYY/MM/DD 或 空), used_order_id：使用的订单ID (string: order_id 或 空), grass_date：数据日期 (string: YYYY/MM/DD)\n字段(COLUMNS): coupon_id, cust_id, status, issue_date, expiry_date, discount_amount, coupon_type, used_date, used_order_id, grass_date\n主键(PRIMARY KEY): coupon_id\n分区(PARTITION): grass_date\n--------------------------------------------------\n    注意事项\n    - 以上是work_document文件夹中的数据表信息，包含了表名、字段描述、数据格式示例等详细信息。\n    - 当用户提到具体的数据文件时，请参考上述数据库指南中的表信息\n    - 根据表名和字段描述来制定分析计划\n    - 确保分析步骤与数据表的结构和字段相匹配\n    ================================================================================\n                                 \n================================================================================\n� 状态栏丨时间信息丨2025年12月28日 星期日 22:47:07 | 地区: 中国\n================================================================================\n�📦 状态栏丨Python环境丨Installed Python Packages                                                          \n--------------------------------------------------------------------------------\n  numpy, pandas, matplotlib, seaborn, scikit-learn\n================================================================================\n📁 状态栏丨文件夹目录丨/Users/jinming.liu/Documents/base/Titan-Analysis-main-1228/titan_v2_1228/backend/work_dataset \n--------------------------------------------------------------------------------\n  📄 0.01 MB    | .DS_Store\n  📄 0.22 MB    | full_sync_cust.csv\n  📄 0.39 MB    | full_sync_item.csv\n  📄 0.10 MB    | daily_incremental_order.csv\n  📄 3.62 MB    | daily_incremental_coupon.csv\n  📄 1.93 MB    | daily_incremental_cust_app_behavior.csv\n  📄 0.05 MB    | daily_incremental_message.csv\n================================================================================\n\n你是python程序员，你负责用最简洁、简短、准确的方式，回应用户的问题 你只需要回答问题，不需要生成图片或者可视化",
+      "agent_id": "programmer"
+    },
+    {
+      "name": "analyst",
+      "role_name": "analyst",
+      "status": "waiting",
+      "memory": "Waiting for Task",
+      "agent_id": "analyst"
+    },
+    {
+      "name": "date_52",
+      "role_name": "date_52",
+      "status": "waiting",
+      "memory": "Waiting for Task",
+      "agent_id": "date_52"
+    },
+    {
+      "name": "11",
+      "role_name": "112",
+      "status": "idle",
+      "memory": "Waiting for Task",
+      "agent_id": "11"
+    }
+  ],
+  "timestamp": 1766933386.4119942
+}
