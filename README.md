@@ -4,11 +4,11 @@ A modern multi-agent AI collaborative data analysis platform that integrates Rea
 
 <table>
   <tr>
-    <td><img src="./picture/p3.jpeg" width="100%"></td>
+    <td><img src="./picture/p3.png" width="100%"></td>
     <td><img src="./picture/p6.png" width="100%"></td>
   </tr>
   <tr>
-    <td><img src="./picture/p1.png" width="100%"></td>
+    <td><img src="./picture/p1.jpeg" width="100%"></td>
     <td><img src="./picture/p4.png" width="100%"></td>
   </tr>
   <tr>
