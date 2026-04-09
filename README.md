@@ -167,9 +167,13 @@ titan-v/
 
 
 #### Acknowledge
-We would like to express our gratitude to the following open-source projects for their invaluable assistance to our project：
-- Camel-AI: https://github.com/camel-ai/camel
-- FoundationAgents/MetaGPT：
+We would like to express our gratitude to the following open-source projects for their invaluable assistance to our project：：
+- [CAMEL-AI](https://github.com/camel-ai/camel): Core multi-agent collaboration framework
+- [FastAPI](https://github.com/fastapi/fastapi) + [Uvicorn](https://github.com/encode/uvicorn): Backend API framework and ASGI server
+- [React](https://github.com/facebook/react) + [TypeScript](https://github.com/microsoft/TypeScript): Frontend application and type-safe engineering foundation
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss): Frontend UI styling system
+- [Mermaid](https://github.com/mermaid-js/mermaid) + [React Flow](https://github.com/xyflow/xyflow): Workflow and graph visualization
+
 
 
 
