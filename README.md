@@ -1,10 +1,19 @@
-# Titan V
+
+<h1 align="center">
+<img src="./picture/p3.png" width="100" alt="ToRA" />
+<br>
+Titan Analysis
+</h1>
+
+<div align="center">
 
 ![](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)
 ![](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)
 ![](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![](https://img.shields.io/badge/code%20style-black-000000.svg)
 
+
+</div>
 
 A modern multi-agent AI collaborative data analysis platform that integrates React frontend, Python FastAPI backend, and CAMEL AI framework to provide a complete AI-driven data analysis solution.
 
