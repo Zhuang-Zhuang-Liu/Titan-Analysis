@@ -1,5 +1,26 @@
-# Titan V - Multi-Agent AI Collaborative Data Analysis Platform
+# Titan V
 A modern multi-agent AI collaborative data analysis platform that integrates React frontend, Python FastAPI backend, and CAMEL AI framework to provide a complete AI-driven data analysis solution.
+
+## 项目展示图
+
+### 1. 图 1
+![图1](./picture/p1.jpeg)
+
+### 2. 图 2
+![图2](./picture/p2.png)
+
+### 3. 图 3
+![图3](./picture/p3.png)
+
+### 4. 图 4
+![图4](./picture/p4.png)
+
+### 5. 图 5
+![图5](./picture/p5.png)
+
+### 6. 图 6
+![图6](./picture/p6.png)
+
 
 ## 🔗 Version 2.0
 
