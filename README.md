@@ -167,7 +167,7 @@ titan-v/
 - `GET /api/agent-states` - Get agent status
 
 
-#### Acknowledge
+## 🔧 Acknowledge
 We would like to express our gratitude to the following open-source projects for their invaluable assistance to our project：：
 - [CAMEL-AI](https://github.com/camel-ai/camel): Core multi-agent collaboration framework
 - [FastAPI](https://github.com/fastapi/fastapi) + [Uvicorn](https://github.com/encode/uvicorn): Backend API framework and ASGI server
@@ -178,7 +178,7 @@ We would like to express our gratitude to the following open-source projects for
 
 
 
-### TODO
+## TODO
 - File Explorer: Display specific folder path in the top right corner of the card using gray font (real relative path from current project folder, not static)
 - Workflow Visualizer: Enable drag-and-drop modification of flowchart Mermaid files (e.g., base01.mmd) internal process relationships through the frontend interface
 - Design new code additions in a separate folder without affecting other modules and existing code
