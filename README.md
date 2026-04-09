@@ -1,6 +1,7 @@
 
 <h1 align="center">
-<img src="./picture/p3.png" width="100" alt="ToRA" />
+<img src="./picture/logo.jpeg" width="100" alt="ToRA" /> 
+  
 <br>
 Titan Analysis
 </h1>
