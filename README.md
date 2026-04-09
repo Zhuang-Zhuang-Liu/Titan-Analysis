@@ -1,4 +1,11 @@
 # Titan V
+
+![](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)
+![](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)
+![](https://img.shields.io/badge/python-3.9+-blue.svg)
+![](https://img.shields.io/badge/code%20style-black-000000.svg)
+
+
 A modern multi-agent AI collaborative data analysis platform that integrates React frontend, Python FastAPI backend, and CAMEL AI framework to provide a complete AI-driven data analysis solution.
 
 
@@ -148,6 +155,12 @@ titan-v/
 - `GET /api/files` - Get file list
 - `GET /api/file/{filename}` - Get file content
 - `GET /api/agent-states` - Get agent status
+
+
+#### Acknowledge
+We would like to express our gratitude to the following open-source projects for their invaluable assistance to our project：
+- Camel-AI: https://github.com/camel-ai/camel
+- FoundationAgents/MetaGPT：
 
 
 
