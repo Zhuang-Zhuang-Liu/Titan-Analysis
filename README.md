@@ -2,12 +2,20 @@
 A modern multi-agent AI collaborative data analysis platform that integrates React frontend, Python FastAPI backend, and CAMEL AI framework to provide a complete AI-driven data analysis solution.
 
 
-<img src="./picture/p1.jpeg" width="800" />
-<img src="./picture/p2.png" width="800" />
-<img src="./picture/p3.png" width="800" />
-<img src="./picture/p4.png" width="800" />
-<img src="./picture/p5.png" width="800" />
-<img src="./picture/p6.png" width="800" />
+<table>
+  <tr>
+    <td><img src="./picture/p1.jpeg" width="100%"></td>
+    <td><img src="./picture/p2.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./picture/p3.png" width="100%"></td>
+    <td><img src="./picture/p4.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./picture/p5.png" width="100%"></td>
+    <td><img src="./picture/p6.png" width="100%"></td>
+  </tr>
+</table>
 
 
 ## 🔗 Version 2.0
